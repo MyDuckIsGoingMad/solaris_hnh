@@ -29,7 +29,7 @@ package haven;
 public class CheckBox extends Widget {
 	static Tex box, mark;
 	public boolean a = false;
-	private boolean changed = false;
+	private boolean hasChanged = false;
 	public Text lbl;
 
 	static {
@@ -58,8 +58,8 @@ public class CheckBox extends Widget {
 		if (!c.isect(Coord.z, box.sz()))
 			return (false);
 		a = !a;
-		changed = true;
-		change(a);
+		hasChanged = true;
+		changed(a);
 		return (true);
 	}
 
@@ -72,13 +72,13 @@ public class CheckBox extends Widget {
 	}
 
 	public boolean isChanged() {
-		if (changed) {
-			changed = false;
+		if (hasChanged) {
+			hasChanged = false;
 			return true;
 		} else return false;
 	}
 
-	public void change(boolean val) {
+	public void changed(boolean val) {
 		wdgmsg("ch", a);
 	}
 }

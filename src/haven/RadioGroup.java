@@ -56,7 +56,7 @@ public class RadioGroup {
 
 	public void changed(boolean val) {
 	    a = val;
-	    super.change(val);
+	    super.changed(val);
 	    lbl = Text.std.render(lbl.text, a ? java.awt.Color.WHITE : java.awt.Color.WHITE);
 	}
     }
