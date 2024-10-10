@@ -64,7 +64,8 @@ public class MenuGrid extends Window {
 	static final BufferedImage grip = Resource.loadimg("gfx/hud/gripbr");
 	static final Coord gzsz = new Coord(16, 17);
 	boolean rsm = false;
-	static final Coord minsz = new Coord(bgsz.x * 4 + 30, bgsz.y * 4 + 28);
+	static final Coord minsz = new Coord(bgsz.x * 4 + 30, bgsz.y * 1 + 28);
+	
 
 	static {
 		Widget.addtype("scm", new WidgetFactory() {
@@ -298,6 +299,7 @@ public class MenuGrid extends Window {
 				ui.grabmouse(this);
 				doff = c;
 				if(c.isect(sz.sub(gzsz), gzsz)){
+					oldSz = this.sz;
 					rsm = true;
 					return true;
 				}
@@ -309,12 +311,22 @@ public class MenuGrid extends Window {
 		return super.mousedown(c, button);
 	}
 
+	Coord oldSz = new Coord(0, 0);
+	Coord d = new Coord(0, 0);
 	public void mousemove(Coord c) {
 		if (rsm){
-			Coord d = c.sub(doff);
+			this.sz = this.oldSz;
+			
+			d = d.add(c.sub(doff));
 			this.sz = this.sz.add(d);
+			
 			this.sz.x = Math.max(minsz.x, this.sz.x);
 			this.sz.y = Math.max(minsz.y, this.sz.y);
+			
+			// Snapping
+			this.sz.x = (int)(Math.round((double)this.sz.x / bgsz.x) * bgsz.x);
+			this.sz.y = (int)(Math.round((double)this.sz.y / bgsz.y) * bgsz.y);
+			
 			doff = c;
 			recalcSize(this.sz);
 			oldSize = this.sz;
@@ -476,6 +488,7 @@ public class MenuGrid extends Window {
 		if (rsm){
 		    ui.grabmouse(null);
 		    rsm = false;
+		    d = new Coord(0, 0);
 		    Config.setWindowOpt("menugrid_sz", this.sz.toString());
 		}else{
 		Resource h = bhit(c);
