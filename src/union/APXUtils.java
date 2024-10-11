@@ -424,7 +424,7 @@ public class APXUtils {
 		JSScriptInfo.RemoveAllSriptsFromMenu();
 		unionRoot = new MenuElement(null,
 				new String[] { CustomMenu.menu_prefix }, resUnion, "Client",
-				"Client Features", 'C', "union_root");
+				"Client Features", '_', "union_root");
 		union_menu.setRootElement(unionRoot);
 
 		scriptRoot = new MenuElement(null,
@@ -433,7 +433,7 @@ public class APXUtils {
 		script_menu.setRootElement(scriptRoot);
 
 		buddyElement = new MenuElement(null, new String[] {CustomMenu.menu_prefix, "buddy_listener"}, buddyRes,
-				"Kin", "Open Kin List", 'K', "buddybtn");
+				"Kin", "Open Kin List", '_', "buddybtn");
 		buddyElement.SetListener(new MenuElemetUseListener(null) {
 					public void use(int button) {
 						if (button == 1) {
@@ -442,7 +442,7 @@ public class APXUtils {
 					}
 				});
 		equipElement = new MenuElement(null, new String[] {CustomMenu.menu_prefix, "equip_listener"}, equipRes,
-				"Equipment", "Open Equipment Window", 'E', "equipbtn");
+				"Equipment", "Open Equipment Window", '_', "equipbtn");
 		equipElement.SetListener(new MenuElemetUseListener(null) {
 					public void use(int button) {
 						if (button == 1) {
@@ -451,7 +451,7 @@ public class APXUtils {
 					}
 				});
 		charElement = new MenuElement(null, new String[] {CustomMenu.menu_prefix, "char_listener"}, charRes,
-				"Character", "Open Character Window", 'H', "charbtn");
+				"Character", "Open Character Window", '_', "charbtn");
 		charElement.SetListener(new MenuElemetUseListener(null) {
 					public void use(int button) {
 						if (button == 1) {
@@ -462,7 +462,7 @@ public class APXUtils {
 					}
 				});
 		optElement = new MenuElement(null, new String[] {CustomMenu.menu_prefix, "opt_listener"}, optRes,
-				"Options", "Open Client Options", 'O', "optbtn");
+				"Options", "Open Client Options", '_', "optbtn");
 		optElement.SetListener(new MenuElemetUseListener(null) {
 					public void use(int button) {
 						if (button == 1) {
@@ -471,7 +471,7 @@ public class APXUtils {
 					}
 				});
 		invElement = new MenuElement(null, new String[] {CustomMenu.menu_prefix, "inv_listener"}, invRes,
-				"Inventory", "Open Inventory", 'I', "invbtn");
+				"Inventory", "Open Inventory", '_', "invbtn");
 		invElement.SetListener(new MenuElemetUseListener(null) {
 					public void use(int button) {
 						if (button == 1) {

@@ -181,7 +181,7 @@ public class MenuGrid extends Window {
 		hotmap.clear();
 		for (i = 0; i < cur.length; i++) {
 			Resource.AButton ad = cur[i].layer(Resource.action);
-			if (ad.hk != 0)
+			if (ad.hk != 0 && ad.hk != '_')
 				hotmap.put(Character.toUpperCase(ad.hk), cur[i]);
 		}
 		i = menu_current_layer_elements_offset;
@@ -191,7 +191,7 @@ public class MenuGrid extends Window {
 				if ((this.menu_current_parent_resource != null) && (x == gsz.x - 1) && (y == gsz.y - 1)) {
 					btn = menu_back_to_previous;
 				} else if ((cur.length > ((gsz.x * gsz.y) - 1))
-						&& (x == gsz.x - 2) && (y == gsz.y - 1)) {
+						&& (x == gsz.x - 1) && (y == gsz.y - 1)) {
 					btn = menu_next_tab;
 				} else if (i < cur.length) {
 					btn = cur[i++];
@@ -209,8 +209,9 @@ public class MenuGrid extends Window {
 		if (pos >= 0)
 			tt = tt.substring(0, pos) + "$col[255,255,0]{" + tt.charAt(pos)
 					+ "}" + tt.substring(pos + 1);
-		else if (ad.hk != 0)
+		else if (ad.hk != 0 && ad.hk != '_') {
 			tt += " [$col[255,255,0]{" + ad.hk + "}]";
+		}
 		if (withpg && (pg != null)) {
 			tt += "\n\n" + pg.text;
 		}
