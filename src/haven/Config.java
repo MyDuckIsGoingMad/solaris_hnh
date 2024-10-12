@@ -189,54 +189,40 @@ public class Config {
 			loadWindowOptions();
 			loadSmileys();
 			loadFEP();
-			loadCurio();
+			loadCurios();
 		} catch (java.net.MalformedURLException e) {
 			throw (new RuntimeException(e));
 		}
 	}
 
 	public static class CuriosityStat {
-		public double baseLP;
+		public int baseLP;
 		public int studyTime;
 		public int attention;
 
-		public CuriosityStat(double blp, float stime, int att) {
+		public CuriosityStat(int blp, float stime, int att) {
 			baseLP = blp;
 			studyTime = (int) (stime * 60);
 			attention = att;
 		}
 	}
 
-	private static void loadCurio() {
+	private static void loadCurios() {
 		try {
-			FileInputStream fstream = new FileInputStream("curio.conf");
-			InputStreamReader in = new InputStreamReader(fstream, "UTF-8");
-			BufferedReader br = new BufferedReader(in);
-			String strLine;
-			while ((strLine = br.readLine()) != null) {
-				String[] info = strLine.split("=");
-				double blp = 0;
-				int att = 0;
-				float stime = 0.0f;
-
-				for (String stat : info[1].split(" ")) {
-					String[] tmp = stat.split(":");
-					if (tmp[0].equals("LP"))
-						blp = (double) Float.valueOf(tmp[1]);
-					else if (tmp[0].equals("AT"))
-						att = Integer.valueOf(tmp[1]);
-					else if (tmp[0].equals("TIME"))
-						stime = Float.valueOf(tmp[1]);
-				}
-				CurioMap.put(info[0], new CuriosityStat(blp, stime, att));
+			FileInputStream fstream = new FileInputStream("config/curios.conf");
+			BufferedReader br = new BufferedReader(new InputStreamReader(fstream, "UTF-8"));
+			String curLine;
+			while ((curLine = br.readLine()) != null) {
+				String [] tmp = curLine.split(":");
+				String name = tmp[0];
+				int blp = Integer.parseInt(tmp[1]);
+				float stime = Float.parseFloat(tmp[2]);
+				int att = Integer.parseInt(tmp[3]);
+				CurioMap.put(name, new CuriosityStat(blp, stime, att));
 			}
 			br.close();
-			in.close();
 			fstream.close();
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		}
-
+		} catch (Exception e) {}
 	}
 
 	private static void loadFEP() {
