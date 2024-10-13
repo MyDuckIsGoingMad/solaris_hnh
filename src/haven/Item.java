@@ -325,7 +325,7 @@ public class Item extends Widget implements DTarget {
 		int h = time/60;
 		int m = time%60;
 		long LPH = Math.round(LPM * 60);
-		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %d %2dm\nLPH: %d", LP, curio_stat.attention, h, m, LPH);
+		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %dh %2dm\nLP/H: %d", LP, curio_stat.attention, h, m, LPH);
 	}
 	
 	private void calcFEP() {

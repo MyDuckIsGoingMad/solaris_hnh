@@ -196,11 +196,11 @@ public class Config {
 	}
 
 	public static class CuriosityStat {
-		public int baseLP;
+		public double baseLP;
 		public int studyTime;
 		public int attention;
 
-		public CuriosityStat(int blp, float stime, int att) {
+		public CuriosityStat(double blp, float stime, int att) {
 			baseLP = blp;
 			studyTime = (int) (stime * 60);
 			attention = att;
@@ -210,7 +210,8 @@ public class Config {
 	private static void loadCurios() {
 		try {
 			FileInputStream fstream = new FileInputStream("config/curios.conf");
-			BufferedReader br = new BufferedReader(new InputStreamReader(fstream, "UTF-8"));
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String curLine;
 			while ((curLine = br.readLine()) != null) {
 				String [] tmp = curLine.split(":");
@@ -218,17 +219,20 @@ public class Config {
 				int blp = Integer.parseInt(tmp[1]);
 				float stime = Float.parseFloat(tmp[2]);
 				int att = Integer.parseInt(tmp[3]);
+				//System.out.println(name + " - LP: " + blp + " / STime: " + stime + " / Att: " + att);
 				CurioMap.put(name, new CuriosityStat(blp, stime, att));
 			}
 			br.close();
+			in.close();
 			fstream.close();
-		} catch (Exception e) {}
+		} catch (FileNotFoundException e) { 
+		} catch (Exception e) { 
+		}
 	}
 
 	private static void loadFEP() {
 		try {
-			FileInputStream fstream;
-			fstream = new FileInputStream("fep.conf");
+			FileInputStream fstream = new FileInputStream("config/fep.conf");
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
@@ -326,7 +330,7 @@ public class Config {
 		smileys = new HashMap<Pattern, String>();
 		try {
 			FileInputStream fstream;
-			fstream = new FileInputStream("smileys.conf");
+			fstream = new FileInputStream("config/smileys.conf");
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
@@ -349,7 +353,7 @@ public class Config {
 	}
 
 	private static void loadWindowOptions() {
-		File inputFile = new File("windows.conf");
+		File inputFile = new File("config/windows.conf");
 		if (!inputFile.exists()) {
 			return;
 		}
@@ -361,12 +365,12 @@ public class Config {
 	}
 
 	private static void loadOptions() {
-		File inputFile = new File("haven.conf");
+		File inputFile = new File("config/haven.conf");
 		if (!inputFile.exists()) {
 			return;
 		}
 		try {
-			options.load(new FileInputStream("haven.conf"));
+			options.load(new FileInputStream("config/haven.conf"));
 		} catch (IOException e) {
 			System.out.println(e);
 		}
@@ -450,7 +454,7 @@ public class Config {
 		timestamp = options.getProperty("timestamp", "false").equals("true");
 
 		try {
-			INIFile ifile = new INIFile("haven.ini");
+			INIFile ifile = new INIFile("config/haven.ini");
 			minimap_highlights = ifile.getSectionColors("HIGHLIGHT", "");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -474,7 +478,7 @@ public class Config {
 	public static void saveWindowOpt() {
 		synchronized (window_props) {
 			try {
-				window_props.store(new FileOutputStream("windows.conf"),
+				window_props.store(new FileOutputStream("config/windows.conf"),
 						"Window config options");
 			} catch (IOException e) {
 				System.out.println(e);
@@ -553,7 +557,7 @@ public class Config {
 		options.setProperty("show_minimap_radius", show_minimap_radius ? "true" : "false");
 
 		try {
-			options.store(new FileOutputStream("haven.conf"),
+			options.store(new FileOutputStream("config/haven.conf"),
 					"Custom config options");
 		} catch (IOException e) {
 			System.out.println(e);

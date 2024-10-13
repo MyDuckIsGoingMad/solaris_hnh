@@ -135,7 +135,7 @@ public class MenuGrid extends Window {
 		/* Load Toolbars */
 		try {
 			Properties tbprops = new Properties();
-			tbprops.load(new FileInputStream("toolbars.conf"));
+			tbprops.load(new FileInputStream("config/toolbars.conf"));
 			int count = Integer.parseInt(tbprops.getProperty("toolbars_count"));
 			for (int i = 0; i < count; i++) {
 				String name = "toolbar" + (i + 1);

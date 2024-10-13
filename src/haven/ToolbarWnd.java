@@ -238,7 +238,7 @@ public class ToolbarWnd extends Window implements DTarget, DropTarget {
 
 	public static void loadBelts() {
 		beltsConfig.clear();
-		String configFileName = "belts_"
+		String configFileName = "config/belts_"
 				+ Config.currentCharName.replaceAll("[^a-zA-Z()]", "_")
 				+ ".conf";
 		try {
@@ -273,7 +273,7 @@ public class ToolbarWnd extends Window implements DTarget, DropTarget {
 
 	public static void saveBelts() {
 		synchronized (beltsConfig) {
-			String configFileName = "belts_"
+			String configFileName = "config/belts_"
 					+ Config.currentCharName.replaceAll("[^a-zA-Z()]", "_")
 					+ ".conf";
 			try {
