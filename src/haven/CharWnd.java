@@ -211,7 +211,6 @@ public class CharWnd extends Window {
 			if ((nm == "intel") && study != null) {
 				study.setattnlimit(attr.comp);
 			}
-			
 			for (int i = 0; i < sCaps.size(); i++) {
 				SCapVal scap = sCaps.get(i);
 				if (scap != null) {
@@ -859,8 +858,24 @@ public class CharWnd extends Window {
 		return new SCapVal(x, y, as, sqrt);
 	}
 
+	private SCapVal softcapval(int y, String[] as, String nm, boolean sqrt)
+	{
+		int x = 25;
+
+		for (int i = 0; i < as.length; i++)
+		{
+			// Icons
+			Img tx = new Img(new Coord(x - (15 * i), y), Resource.loadtex("gfx/hud/charsh/" + as[i]), cattr);
+		}
+
+		// Name
+		new Label(new Coord(x += 15, y), cattr, nm + ":");
+
+		return new SCapVal(x, y, as, sqrt);
+	}
+
 	public CharWnd(Coord c, Widget parent, int studyid) {
-		super(c, new Coord(400, 340), parent, "Character Sheet");
+		super(c, new Coord(400, 400), parent, "Character Sheet");
 		ui.wnd_char = this;
 		int y;
 		cattr = new Widget(Coord.z, new Coord(400, 300), this);
@@ -874,8 +889,8 @@ public class CharWnd extends Window {
 		baseval(y += 15, "csm", "Charisma");
 		baseval(y += 15, "dxt", "Dexterity");
 		baseval(y += 15, "psy", "Psyche");
-		foodm = new FoodMeter(new Coord(10, 170), cattr);
-		
+		foodm = new FoodMeter(new Coord(10, 310), cattr);
+
 		int expbase = 220;
 		new Label(new Coord(210, expbase), cattr, "Cost:");
 		cost = new Label(new Coord(300, expbase), cattr, "0");
@@ -922,18 +937,17 @@ public class CharWnd extends Window {
 		skillval(y += 15, "cooking", "Cooking");
 		skillval(y += 15, "farming", "Farming");
 		skillval(y += 15, "survive", "Survival");
-		
-		
-		y = 210;
+
+		y = 170;
 		sCaps = new ArrayList<SCapVal>();
-		sCaps.add(softcapval(y, 		new String[]{"perc", "explore"}, "Sight", false)); // Perc x Exp
+		sCaps.add(softcapval(y, new String[]{"perc", "explore"}, "Sight", false)); // Perc x Exp
 		sCaps.add(softcapval(y += 15, new String[]{"perc", "cooking"}, "Baking", true));   // Perc x Cooking
 		sCaps.add(softcapval(y += 15, new String[]{"psy", "smithing"}, "Goldsmithing", true)); // Psy x Smith
 		sCaps.add(softcapval(y += 15, new String[]{"str", "smithing"}, "Metalworking", true)); // Str x Smith
 		sCaps.add(softcapval(y += 15, new String[]{"intel", "stealth"}, "Evasion", true)); // Int x Stealth
 		sCaps.add(softcapval(y += 15, new String[]{"dxt", "sewing"}, "Weaving", true)); // Dex x Sewing
 		sCaps.add(softcapval(y += 15, new String[]{"psy", "sewing"}, "Psycrafting", true)); // Psy x Sewing
-	
+
 		skill = new Widget(Coord.z, new Coord(400, 275), this);
 		ski = new SkillInfo(new Coord(10, 10), new Coord(180, 260), skill);
 		new Label(new Coord(210, 10), skill, "Available Skills:");
