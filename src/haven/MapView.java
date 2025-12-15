@@ -32,7 +32,6 @@ import haven.INIFile.Pair;
 import haven.MCache.Grid;
 import haven.MCache.Overlay;
 import haven.Resource.Tile;
-import haven.Coord;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Constructor;
@@ -1181,6 +1180,34 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		g.chcolor();
 	}
 
+	private void drawCropsStage(GOut g) {
+		String name;
+		
+		synchronized (glob.oc) {
+			for (Gob tg : glob.oc) {
+				name = tg.resname();
+				if(tg.sc == null || !name.contains("gfx/terobjs/plants/"))
+					continue;
+
+				Byte stage = tg.GetBlob(0);
+				
+				if(stage == null || stage < 3) {
+					continue;
+				}
+				
+				// Carrot and hemp have 4 stages and produce a different output at stage 3.
+				if(!(name.contains("carrot") || name.contains("hemp")) || stage == 4) {
+					g.chcolor(10,255,0, 64);
+				} else {
+					g.chcolor(255,215,0, 64);
+				}
+
+				drawradius(g,tg.sc, 7);
+			}
+		}
+		g.chcolor();
+	}
+
 	private void drawBeastRadius(GOut g) {
 		String name;
 		g.chcolor(255, 0, 0, 96);
@@ -1520,6 +1547,10 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 			drawObjectRadius(g);
 		else
 			drawPlaceObjectEffect(g);
+
+		if (Config.showCropsStage) {
+			drawCropsStage(g);
+		}
 
 		if (Config.showBeast) {
 			drawBeastRadius(g);

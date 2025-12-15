@@ -85,6 +85,7 @@ public class Config {
 	public static boolean isSoundOn = true;
 	public static boolean showRadius = true;
 	public static boolean showHidden = true;
+	public static boolean showCropsStage = false;
 	public static boolean showBeast = true;
 	public static boolean showDirection;
 	public static boolean showNames;
@@ -405,6 +406,7 @@ public class Config {
 		showBeast = options.getProperty("showBeast", "false").equals("true");
 		showRadius = options.getProperty("showRadius", "false").equals("true");
 		showHidden = options.getProperty("showHidden", "false").equals("true");
+		showCropsStage = options.getProperty("showCropsStage", "false").equals("true");
 		simple_plants = options.getProperty("simple_plants", "false").equals("true");
 		objectHighlighting = options.getProperty("objMouseHLight", "false").equals("true");
 		onlineNotifier = options.getProperty("onlineNotifier", "false").equals("true");
@@ -525,6 +527,7 @@ public class Config {
 		options.setProperty("showBeast", showBeast ? "true" : "false");
 		options.setProperty("showRadius", showRadius ? "true" : "false");
 		options.setProperty("showHidden", showHidden ? "true" : "false");
+		options.setProperty("showCropsStage", showCropsStage ? "true" : "false");
 		options.setProperty("simple_plants", simple_plants ? "true" : "false");
 		options.setProperty("objMouseHLight", objectHighlighting ? "true" : "false");
 		options.setProperty("onlineNotifier", onlineNotifier ? "true" : "false");

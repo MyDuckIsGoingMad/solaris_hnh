@@ -434,6 +434,13 @@ public class MenuGrid extends Window {
 			ui.cons.out.println(str);
 			ui.slenhud.error(str);
 			Config.saveOptions();
+		} else if (list[1].equals("crops stage")) {
+			Config.showCropsStage = !Config.showCropsStage;
+			String str = "Crops stage highlight is turned "
+					+ ((Config.showCropsStage) ? "ON" : "OFF");
+			ui.cons.out.println(str);
+			ui.slenhud.error(str);
+			Config.saveOptions();
 		} else if (list[1].equals("hide")) {
 			for (int i = 2; i < list.length; i++) {
 				String item = list[i];
