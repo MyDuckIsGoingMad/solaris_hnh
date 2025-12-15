@@ -858,22 +858,6 @@ public class CharWnd extends Window {
 		return new SCapVal(x, y, as, sqrt);
 	}
 
-	private SCapVal softcapval(int y, String[] as, String nm, boolean sqrt)
-	{
-		int x = 25;
-
-		for (int i = 0; i < as.length; i++)
-		{
-			// Icons
-			Img tx = new Img(new Coord(x - (15 * i), y), Resource.loadtex("gfx/hud/charsh/" + as[i]), cattr);
-		}
-
-		// Name
-		new Label(new Coord(x += 15, y), cattr, nm + ":");
-
-		return new SCapVal(x, y, as, sqrt);
-	}
-
 	public CharWnd(Coord c, Widget parent, int studyid) {
 		super(c, new Coord(400, 400), parent, "Character Sheet");
 		ui.wnd_char = this;
