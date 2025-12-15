@@ -1,1 +1,7 @@
+## Ignore Visual Studio Code settings
 .vscode/settings.json
+
+
+## Ignore build files
+build/
+classes/

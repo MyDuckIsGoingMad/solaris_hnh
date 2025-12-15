@@ -7,7 +7,7 @@
 		<mkdir dir="build" />
 		<mkdir dir="classes" />
 		<mkdir dir="classes/haven" />
-		<javac srcdir="src" destdir="classes" debug="on" encoding="UTF-8" source="1.5" target="1.5" includeantruntime="no">
+		<javac srcdir="src" destdir="classes" debug="on" encoding="UTF-8" source="1.8" target="1.8" includeantruntime="no" nowarn="true">
 			<classpath>
 				<pathelement path="lib/jogl.jar" />
 				<pathelement path="lib/gluegen-rt.jar" />
@@ -189,5 +189,27 @@
 		</javadoc>
 	</target>
 
-	<target name="default" depends="jars, dll_64, resources, docs" />
+	<target name="batch_run">
+		<copy todir="build">
+			<fileset dir=".">
+				<include name="run.bat" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="config_files">
+		<mkdir dir="build/config" />
+		<copy todir="build/config">
+			<fileset dir="config" />
+		</copy>
+	</target>
+
+	<target name="script_files">
+		<mkdir dir="build/scripts" />
+		<copy todir="build/scripts">
+			<fileset dir="scripts" />
+		</copy>
+	</target>
+
+	<target name="default" depends="jars, dll_64, resources, batch_run, config_files, script_files" />
 </project>
