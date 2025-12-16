@@ -266,15 +266,8 @@ public class JSBotUtils {
 		if (o == null)
 			return;
 		if (UI.instance.mapview != null) {
-			sz = UI.instance.mapview.sz;
-			sc = new Coord((int) Math.round(Math.random() * 200 + sz.x / 2
-					- 100), (int) Math.round(
-							Math.random() * 200 + sz.y / 2
-									- 100));
 			oc = o.position();
-
-			UI.instance.mapview.wdgmsg("click", sc, oc, btn, modflags, obj_id,
-					oc);
+			UI.instance.mapview.wdgmsg("click", o.sc, oc, btn, modflags, obj_id, oc);
 		}
 	}
 
