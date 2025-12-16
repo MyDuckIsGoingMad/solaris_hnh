@@ -182,13 +182,13 @@ public class CharWnd extends Window {
 			super(nm);
 			this.lbl = new Label(new Coord(x, y), cattr, "");
 			if (attrNames.contains(nm))
-				this.lbl2 = new Label(new Coord(x+35, y), cattr, "");
+				this.lbl2 = new Label(new Coord(x + 35, y), cattr, "");
 			update();
 		}
 
 		public void update() {
 			if (attrNames.contains(nm) && lbl2 != null) {
-				if (attr.comp != attr.base)	{
+				if (attr.comp != attr.base) {
 					lbl2.settext(Integer.toString(attr.comp));
 					if (attr.comp < attr.base) {
 						// debuff
@@ -350,54 +350,48 @@ public class CharWnd extends Window {
 			upd();
 		}
 	}
-	
+
 	class SCapVal {
 		String[] as;
 		boolean sqrt;
 		Label baseLbl;
 		Label totalLbl;
-		
-		public SCapVal(int x, int y, String[] as, boolean sqrt)
-		{
+
+		public SCapVal(int x, int y, String[] as, boolean sqrt) {
 			this.as = as;
 			this.sqrt = sqrt;
-			
+
 			baseLbl = new Label(new Coord(x += 75, y), cattr, "");
 			baseLbl.setcolor(Color.WHITE);
-			
+
 			totalLbl = new Label(new Coord(x += 35, y), cattr, "");
-	    	totalLbl.setcolor(buff);
-			
+			totalLbl.setcolor(buff);
+
 			update();
 		}
-		
-		public void update()
-		{
+
+		public void update() {
 			int baseVal = 1;
-		    int totalVal = 1;
-			for (int i = 0; i < as.length; i++)
-			{
+			int totalVal = 1;
+			for (int i = 0; i < as.length; i++) {
 				// Values
 				baseVal *= getStat(as[i]);
-		        totalVal *= getStatTotal(as[i]);
+				totalVal *= getStatTotal(as[i]);
 			}
-			
-			if (sqrt) { 
+
+			if (sqrt) {
 				baseVal = (int) Math.round(Math.sqrt(baseVal));
 				totalVal = (int) Math.round(Math.sqrt(totalVal));
 			}
 
-	    	baseLbl.settext("" + baseVal);
+			baseLbl.settext("" + baseVal);
 
-		    // Show total value (if necessary)
-		    if (baseVal != totalVal)
-		    {
-		    	totalLbl.settext("" + totalVal);
-		    }
-		    else
-		    {
-		    	totalLbl.settext("");
-		    }
+			// Show total value (if necessary)
+			if (baseVal != totalVal) {
+				totalLbl.settext("" + totalVal);
+			} else {
+				totalLbl.settext("");
+			}
 		}
 	}
 
@@ -451,9 +445,9 @@ public class CharWnd extends Window {
 
 		public String[] getElsNames() {
 			String[] ret;
-			synchronized(els) {
+			synchronized (els) {
 				ret = new String[els.size()];
-				for(int i = 0; i < els.size(); ++i) {
+				for (int i = 0; i < els.size(); ++i) {
 					ret[i] = els.get(i).id;
 				}
 			}
@@ -462,11 +456,11 @@ public class CharWnd extends Window {
 
 		public double getFepValue(String id) {
 			double ret = 0.0;
-			synchronized(els) {
+			synchronized (els) {
 				for (int i = 0; i < els.size(); ++i) {
 					El tel = els.get(i);
 					if (tel.id.equals(id)) {
-						ret = ((double) tel.amount)/10;
+						ret = ((double) tel.amount) / 10;
 						break;
 					}
 				}
@@ -840,21 +834,18 @@ public class CharWnd extends Window {
 		new Label(new Coord(230, y), cattr, nm + ":");
 		new SAttr(id, 320, y);
 	}
-	
-	
-	private SCapVal softcapval(int y, String[] as, String nm, boolean sqrt)
-	{
+
+	private SCapVal softcapval(int y, String[] as, String nm, boolean sqrt) {
 		int x = 20;
-		
-		for (int i = 0; i < as.length; i++)
-		{
+
+		for (int i = 0; i < as.length; i++) {
 			// Icons
 			Img tx = new Img(new Coord(x - (15 * i), y), Resource.loadtex("gfx/hud/charsh/" + as[i]), cattr);
 		}
-		
+
 		// Name
 		new Label(new Coord(x += 15, y), cattr, nm + ":");
-		
+
 		return new SCapVal(x, y, as, sqrt);
 	}
 
@@ -924,13 +915,13 @@ public class CharWnd extends Window {
 
 		y = 170;
 		sCaps = new ArrayList<SCapVal>();
-		sCaps.add(softcapval(y, new String[]{"perc", "explore"}, "Sight", false)); // Perc x Exp
-		sCaps.add(softcapval(y += 15, new String[]{"perc", "cooking"}, "Baking", true));   // Perc x Cooking
-		sCaps.add(softcapval(y += 15, new String[]{"psy", "smithing"}, "Goldsmithing", true)); // Psy x Smith
-		sCaps.add(softcapval(y += 15, new String[]{"str", "smithing"}, "Metalworking", true)); // Str x Smith
-		sCaps.add(softcapval(y += 15, new String[]{"intel", "stealth"}, "Evasion", true)); // Int x Stealth
-		sCaps.add(softcapval(y += 15, new String[]{"dxt", "sewing"}, "Weaving", true)); // Dex x Sewing
-		sCaps.add(softcapval(y += 15, new String[]{"psy", "sewing"}, "Psycrafting", true)); // Psy x Sewing
+		sCaps.add(softcapval(y, new String[] { "perc", "explore" }, "Sight", false)); // Perc x Exp
+		sCaps.add(softcapval(y += 15, new String[] { "perc", "cooking" }, "Baking", true)); // Perc x Cooking
+		sCaps.add(softcapval(y += 15, new String[] { "psy", "smithing" }, "Goldsmithing", true)); // Psy x Smith
+		sCaps.add(softcapval(y += 15, new String[] { "str", "smithing" }, "Metalworking", true)); // Str x Smith
+		sCaps.add(softcapval(y += 15, new String[] { "intel", "stealth" }, "Evasion", true)); // Int x Stealth
+		sCaps.add(softcapval(y += 15, new String[] { "dxt", "sewing" }, "Weaving", true)); // Dex x Sewing
+		sCaps.add(softcapval(y += 15, new String[] { "psy", "sewing" }, "Psycrafting", true)); // Psy x Sewing
 
 		skill = new Widget(Coord.z, new Coord(400, 275), this);
 		ski = new SkillInfo(new Coord(10, 10), new Coord(180, 260), skill);
@@ -1028,21 +1019,21 @@ public class CharWnd extends Window {
 		}.tooltip = "Personal Beliefs";
 
 		hide();
-		//Kerri: last created window
-		if(Config.toggleCA)
-			if(UI.instance.menugrid != null) {
+		// Kerri: last created window
+		if (Config.toggleCA)
+			if (UI.instance.menugrid != null) {
 				Resource r = Resource.load("paginae/act/crime");
 				UI.instance.menugrid.use(r);
 			}
-		if(Config.toggleTR)
-			if(UI.instance.menugrid != null) {
+		if (Config.toggleTR)
+			if (UI.instance.menugrid != null) {
 				Resource r = Resource.load("paginae/act/tracking");
 				UI.instance.menugrid.use(r);
 			}
-		if(Config.new_chat)
+		if (Config.new_chat)
 			ChatHWPanel.fbtn.click();
-		if(Config.toggleCL){
-			if(UI.instance.minimappanel != null) {
+		if (Config.toggleCL) {
+			if (UI.instance.minimappanel != null) {
 				UI.instance.minimappanel.vcl.click();
 				UI.instance.minimappanel.pcl.click();
 			}
@@ -1087,7 +1078,7 @@ public class CharWnd extends Window {
 		}
 		return ret;
 	}
-	
+
 	public static int getStatTotal(String name) {
 		int ret = 0;
 		for (Attr attr : attrs.values()) {
@@ -1197,9 +1188,10 @@ public class CharWnd extends Window {
 	}
 
 	NAttr expattr = null;
+
 	public double getExpMode() {
 		try {
-			return (double)expattr.attr.comp / 100;
+			return (double) expattr.attr.comp / 100;
 		} catch (NullPointerException ex) {
 			return 1;
 		}
