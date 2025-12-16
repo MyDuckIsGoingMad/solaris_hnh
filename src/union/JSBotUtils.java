@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-
 import union.jsbot.*;
 
 public class JSBotUtils {
@@ -51,7 +50,7 @@ public class JSBotUtils {
 		}
 		if (wdg instanceof Window) { // Last created window
 			lastCreatedWindow = (Window) wdg;
-			if (((Window)wdg).cap.text.equals("Change Name")) {
+			if (((Window) wdg).cap.text.equals("Change Name")) {
 				@SuppressWarnings("unused")
 				Button btnGen = new Button(new Coord(210, 20), 35, wdg, "Gen") {
 					@SuppressWarnings("deprecation")
@@ -80,7 +79,7 @@ public class JSBotUtils {
 		if (wdg instanceof Fightview) { // Aggro
 			haveAggro = false;
 		}
-		if(wdg instanceof Window) {
+		if (wdg instanceof Window) {
 			lastCreatedWindow = null;
 		}
 	}
@@ -183,13 +182,13 @@ public class JSBotUtils {
 
 	// Kerrigan's block
 	// You may change it, but you will die.
-	
+
 	// leaves party
 	public static void leaveParty() {
 		Widget root = UI.instance.root;
 		for (Widget wdg = root.child; wdg != null; wdg = wdg.next) {
 			if (wdg instanceof Partyview) {
-				((Partyview)wdg).leaveParty();
+				((Partyview) wdg).leaveParty();
 				return;
 			}
 		}
@@ -223,8 +222,9 @@ public class JSBotUtils {
 		if (UI.instance.mapview != null) {
 			sz = UI.instance.mapview.sz;
 			sc = new Coord((int) Math.round(Math.random() * 200 + sz.x / 2
-					- 100), (int) Math.round(Math.random() * 200 + sz.y / 2
-					- 100));
+					- 100), (int) Math.round(
+							Math.random() * 200 + sz.y / 2
+									- 100));
 			return sc;
 		} else
 			return new Coord(400, 400);
@@ -254,7 +254,7 @@ public class JSBotUtils {
 		mC = mC.add(tile);
 		return UI.instance.mapview.getTileFix(mC);
 	}
-	
+
 	public static int absTileType(int x, int y) {
 		return UI.instance.mapview.getTileFix(new Coord(x, y));
 	}
@@ -268,9 +268,11 @@ public class JSBotUtils {
 		if (UI.instance.mapview != null) {
 			sz = UI.instance.mapview.sz;
 			sc = new Coord((int) Math.round(Math.random() * 200 + sz.x / 2
-					- 100), (int) Math.round(Math.random() * 200 + sz.y / 2
-					- 100));
+					- 100), (int) Math.round(
+							Math.random() * 200 + sz.y / 2
+									- 100));
 			oc = o.position();
+
 			UI.instance.mapview.wdgmsg("click", sc, oc, btn, modflags, obj_id,
 					oc);
 		}
@@ -358,7 +360,7 @@ public class JSBotUtils {
 			return false;
 		return UI.instance.popupMenu.haveOpt(txt);
 	}
-	
+
 	public static void closePopup() {
 		if (havePopupMenu())
 			UI.instance.popupMenu.closeMenu();
@@ -411,7 +413,7 @@ public class JSBotUtils {
 					if (((Window) wdg).cap.text.equals(name)) {
 						return true;
 					}
-		}// for
+		} // for
 		return false;
 	}
 
@@ -499,10 +501,11 @@ public class JSBotUtils {
 					if (lay != null) {
 						for (Entry<Indir<Resource>, Sprite> s : lay.sprites
 								.entrySet()) {
-							if(s != null)
-							if (s.getValue().res.name.contains("gfx/borka/body/") && s.getValue().res.name.contains("/arm/banzai/")) {
-								return true;
-							}
+							if (s != null)
+								if (s.getValue().res.name.contains("gfx/borka/body/")
+										&& s.getValue().res.name.contains("/arm/banzai/")) {
+									return true;
+								}
 						}
 					}
 				}
@@ -536,7 +539,7 @@ public class JSBotUtils {
 		else
 			return null;
 	}
-	
+
 	public static JSGob findMapObjectAbs(String name, int radius, Coord abs) {
 		double min = radius;
 		Gob min_gob = null;
@@ -557,7 +560,7 @@ public class JSBotUtils {
 		else
 			return null;
 	}
-	
+
 	// finds object at tile
 	public static int objectAtTile(String name, Coord tile) {
 		Coord my = MapView.tilify(tile);
@@ -630,10 +633,10 @@ public class JSBotUtils {
 						if (objName.startsWith("!"))
 							continue;
 						objids.add((Integer) gob.id);
-					}// object at finding radius
-				}// for bjects
-			}// GOBs
-		}// sync
+					} // object at finding radius
+				} // for bjects
+			} // GOBs
+		} // sync
 		JSGob[] ret = new JSGob[objids.size()];
 		for (int i = 0; i < objids.size(); i++)
 			ret[i] = new JSGob(objids.get(i));
@@ -662,9 +665,9 @@ public class JSBotUtils {
 		}
 		return false;
 	}
-	
+
 	public static JSInventory getStudy() {
-		//if (CharWnd.Study.getInventory() != null)
+		// if (CharWnd.Study.getInventory() != null)
 		for (Widget wdg = CharWnd.study.child; wdg != null; wdg = wdg.next) {
 			if (wdg instanceof Inventory)
 				return new JSInventory(UI.instance.getId(wdg));
@@ -704,12 +707,12 @@ public class JSBotUtils {
 		}
 		return "";
 	}
-	
+
 	public static String getWindowImg(String wnd, int pos) {
 		if (pos < 1)
 			pos = 1;
 		ArrayList<Img> empty = new ArrayList<Img>();
-		ArrayList<Img> full  = new ArrayList<Img>();
+		ArrayList<Img> full = new ArrayList<Img>();
 		Widget root = UI.instance.root;
 		for (Widget wdg = root.child; wdg != null; wdg = wdg.next) {
 			if (wdg instanceof Window)
@@ -718,7 +721,7 @@ public class JSBotUtils {
 						if (img instanceof Img) {
 							Img i = (Img) img;
 							if (i != null) {
-								if(i.textureName.contains("/invsq"))
+								if (i.textureName.contains("/invsq"))
 									empty.add(i);
 								else
 									full.add(i);
@@ -729,17 +732,17 @@ public class JSBotUtils {
 			return "";
 		if (pos - 1 > empty.size())
 			return "";
-		Img eimg = empty.get(pos-1);
+		Img eimg = empty.get(pos - 1);
 		Coord epos = eimg.c;
 		Coord esize = eimg.sz;
 		for (int i = 0; i < full.size(); ++i) {
 			Img timg = full.get(i);
-			if(timg.c.isect(epos, esize))
+			if (timg.c.isect(epos, esize))
 				return timg.textureName;
 		}
 		return "";
 	}
-	
+
 	public static int windowImgs(String wnd, boolean free) {
 		int cnt = 0;
 		Widget root = UI.instance.root;
@@ -750,23 +753,23 @@ public class JSBotUtils {
 						if (img instanceof Img) {
 							Img i = (Img) img;
 							if (i != null) {
-								if(free){
-									if(i.textureName.contains("/invsq")) cnt++;
-								}
-								else
-									if(!i.textureName.contains("/invsq")) cnt++;
-										
+								if (free) {
+									if (i.textureName.contains("/invsq"))
+										cnt++;
+								} else if (!i.textureName.contains("/invsq"))
+									cnt++;
+
 							}
 						}
 		}
 		return cnt;
 	}
-	
+
 	public static void imgClick(String wnd, int pos, int button, int mod) {
 		if (pos < 1)
 			pos = 1;
 		ArrayList<Img> empty = new ArrayList<Img>();
-		ArrayList<Img> full  = new ArrayList<Img>();
+		ArrayList<Img> full = new ArrayList<Img>();
 		Widget root = UI.instance.root;
 		for (Widget wdg = root.child; wdg != null; wdg = wdg.next) {
 			if (wdg instanceof Window)
@@ -775,19 +778,19 @@ public class JSBotUtils {
 						if (img instanceof Img) {
 							Img i = (Img) img;
 							if (i != null) {
-								if(i.textureName.contains("/invsq"))
+								if (i.textureName.contains("/invsq"))
 									empty.add(i);
 								else
 									full.add(i);
 							}
 						}
 		}
-		Img eimg = empty.get(pos-1);
+		Img eimg = empty.get(pos - 1);
 		Coord epos = eimg.c;
 		Coord esize = eimg.sz;
 		for (int i = 0; i < full.size(); ++i) {
 			Img timg = full.get(i);
-			if(timg.c.isect(epos, esize)) {
+			if (timg.c.isect(epos, esize)) {
 				timg.wdgmsg("click", new Coord(1, 1), button, mod);
 				return;
 			}
@@ -819,10 +822,10 @@ public class JSBotUtils {
 										box.transferOne();
 									else
 										return;
-								}// box that u need by count
-							}// box isnt null
+								} // box that u need by count
+							} // box isnt null
 						}
-		}// for
+		} // for
 	}
 
 	// true if given craft wnd is ready
@@ -952,19 +955,19 @@ public class JSBotUtils {
 			inhouse = true;
 		return inhouse;
 	}
-	
+
 	public static void drawGroundRect(Coord offset, Coord size) {
 		rectOffset = offset;
 		rectSize = size;
 	}
-	
+
 	public static boolean haveCharlist() {
-		if(Charlist.instance != null)
+		if (Charlist.instance != null)
 			return true;
 		else
 			return false;
 	}
-	
+
 	public static Coord m2s(Coord c) {
 		return (new Coord((c.x * 2) - (c.y * 2), c.x + c.y));
 	}
@@ -972,18 +975,18 @@ public class JSBotUtils {
 	public static Coord s2m(Coord c) {
 		return (new Coord((c.x / 4) + (c.y / 2), (c.y / 2) - (c.x / 4)));
 	}
-	
+
 	public static Coord tilify(Coord c) {
 		c = c.div(tileSize);
 		c = c.mul(tileSize);
 		c = c.add(tileSize.div(2));
 		return (c);
 	}
-	
+
 	public static Coord[] areaSelector(Coord wpos) {
-		final Coord [] ret = new Coord[4];
-		new MapMod(wpos, UI.instance.root){
-			// I like Java for this shit 
+		final Coord[] ret = new Coord[4];
+		new MapMod(wpos, UI.instance.root) {
+			// I like Java for this shit
 			public void wdgmsg(Widget sender, String msg, Object... args) {
 				if (sender == accept) {
 					ret[0] = tilify(c1.mul(tileSize));
@@ -999,62 +1002,64 @@ public class JSBotUtils {
 		};
 		return ret;
 	}
-	
+
 	public static JSGob[] getObjectsInRect(Coord abs, Coord size, int blob, String... names) {
 		abs = tilify(abs);
-		if(blob < 0) blob = 0;
+		if (blob < 0)
+			blob = 0;
 		ArrayList<Integer> objects = new ArrayList<Integer>();
 		Coord bottomRight = new Coord(abs.add(size.mul(11)));
 		synchronized (glob.oc) {
 			for (Gob gob : glob.oc) {
-				if(gob.GetBlob(0) == blob){
+				if (gob.GetBlob(0) == blob) {
 					Coord gc = gob.position();
-					if(gc.x >= abs.x && gc.y >= abs.y &&
-					   gc.x <= bottomRight.x && gc.y <= bottomRight.y)
+					if (gc.x >= abs.x && gc.y >= abs.y &&
+							gc.x <= bottomRight.x && gc.y <= bottomRight.y)
 						for (String objName : names) {
 							if (gob.resname().contains(objName)) {
-								if(objName.startsWith("!")) continue;
-								if(!objects.contains((Integer) gob.id))
+								if (objName.startsWith("!"))
+									continue;
+								if (!objects.contains((Integer) gob.id))
 									objects.add((Integer) gob.id);
 							}
 						}
-				}//blob
-			}// GOBs
-		}//sync
+				} // blob
+			} // GOBs
+		} // sync
 		JSGob[] ret = new JSGob[objects.size()];
 		for (int i = 0; i < objects.size(); i++)
 			ret[i] = new JSGob(objects.get(i));
 		return ret;
 	}
-	
+
 	public static boolean haveParty() {
 		return glob.party.memb.size() > 1;
 	}
-	
+
 	public static String[] getFepList() {
 		return CharWnd.foodm.getElsNames();
 	}
-	
+
 	public static double getFepByName(String id) {
 		return CharWnd.foodm.getFepValue(id);
 	}
-	
+
 	public static int getMaxStatValue() {
 		return CharWnd.getMaxFepValue();
 	}
-	
+
 	public static String getMaxStatName() {
 		return CharWnd.getMaxFepName();
 	}
-	
+
 	public static int getStat(String n) {
 		return CharWnd.getStat(n);
 	}
-	
+
 	public static int getStatTotal(String n) {
 		return CharWnd.getStatTotal(n);
 	}
-	
+
 	public static double getCurrentFepCap() {
 		return ((double) CharWnd.foodm.getCap() / 10);
 	}
