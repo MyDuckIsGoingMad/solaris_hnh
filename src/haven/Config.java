@@ -44,7 +44,6 @@ import java.net.URL;
 import java.util.*;
 import java.util.regex.Pattern;
 
-
 import ender.GoogleTranslator;
 
 public class Config {
@@ -215,19 +214,20 @@ public class Config {
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String curLine;
 			while ((curLine = br.readLine()) != null) {
-				String [] tmp = curLine.split(":");
+				String[] tmp = curLine.split(":");
 				String name = tmp[0];
 				int blp = Integer.parseInt(tmp[1]);
 				float stime = Float.parseFloat(tmp[2]);
 				int att = Integer.parseInt(tmp[3]);
-				//System.out.println(name + " - LP: " + blp + " / STime: " + stime + " / Att: " + att);
+				// System.out.println(name + " - LP: " + blp + " / STime: " + stime + " / Att: "
+				// + att);
 				CurioMap.put(name, new CuriosityStat(blp, stime, att));
 			}
 			br.close();
 			in.close();
 			fstream.close();
-		} catch (FileNotFoundException e) { 
-		} catch (Exception e) { 
+		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 		}
 	}
 
@@ -280,39 +280,39 @@ public class Config {
 		}
 		for (char c : opt.parsed()) {
 			switch (c) {
-			case 'h':
-				usage(System.out);
-				System.exit(0);
-				break;
-			case 'd':
-				dbtext = true;
-				break;
-			case 'P':
-				profile = true;
-				break;
-			case 'f':
-				fullscreen = true;
-				break;
-			case 'r':
-				resdir = opt.arg;
-				break;
-			case 'A':
-				authserv = opt.arg;
-				break;
-			case 'U':
-				try {
-					resurl = new URL(opt.arg);
-				} catch (java.net.MalformedURLException e) {
-					System.err.println(e);
-					System.exit(1);
-				}
-				break;
-			case 'u':
-				authuser = opt.arg;
-				break;
-			case 'C':
-				authck = Utils.hex2byte(opt.arg);
-				break;
+				case 'h':
+					usage(System.out);
+					System.exit(0);
+					break;
+				case 'd':
+					dbtext = true;
+					break;
+				case 'P':
+					profile = true;
+					break;
+				case 'f':
+					fullscreen = true;
+					break;
+				case 'r':
+					resdir = opt.arg;
+					break;
+				case 'A':
+					authserv = opt.arg;
+					break;
+				case 'U':
+					try {
+						resurl = new URL(opt.arg);
+					} catch (java.net.MalformedURLException e) {
+						System.err.println(e);
+						System.exit(1);
+					}
+					break;
+				case 'u':
+					authuser = opt.arg;
+					break;
+				case 'C':
+					authck = Utils.hex2byte(opt.arg);
+					break;
 			}
 		}
 		if (opt.rest.length > 0)
@@ -342,7 +342,8 @@ public class Config {
 				res = "\\$img\\[smiley\\/" + tmp[1] + "\\]";
 				smileys.put(
 						Pattern.compile(smile, Pattern.CASE_INSENSITIVE
-								| Pattern.LITERAL), res);
+								| Pattern.LITERAL),
+						res);
 			}
 			br.close();
 			in.close();
@@ -380,16 +381,24 @@ public class Config {
 		String uiHighlight = options.getProperty("uicolor", "0,0,0,128");
 
 		String clist[] = hideHighlight.split(",");
-		if(clist.length != 4) {
-			clist[0] = "255"; clist[1] = "0"; clist[2] = "0"; clist[0] = "128";
+		if (clist.length != 4) {
+			clist[0] = "255";
+			clist[1] = "0";
+			clist[2] = "0";
+			clist[0] = "128";
 		}
 		String rlist[] = uiHighlight.split(",");
-		if(rlist.length != 4) {
-			rlist[0] = "255"; rlist[1] = "0"; rlist[2] = "0"; rlist[0] = "128";
+		if (rlist.length != 4) {
+			rlist[0] = "255";
+			rlist[1] = "0";
+			rlist[2] = "0";
+			rlist[0] = "128";
 		}
 
-		hideColor = new Color(Integer.valueOf(clist[0]), Integer.valueOf(clist[1]), Integer.valueOf(clist[2]), Integer.valueOf(clist[3]));
-		uiColor = new Color(Integer.valueOf(rlist[0]), Integer.valueOf(rlist[1]), Integer.valueOf(rlist[2]), Integer.valueOf(rlist[3]));
+		hideColor = new Color(Integer.valueOf(clist[0]), Integer.valueOf(clist[1]), Integer.valueOf(clist[2]),
+				Integer.valueOf(clist[3]));
+		uiColor = new Color(Integer.valueOf(rlist[0]), Integer.valueOf(rlist[1]), Integer.valueOf(rlist[2]),
+				Integer.valueOf(rlist[3]));
 
 		GoogleTranslator.apikey = options.getProperty("GoogleAPIKey", "AIzaSyCuo-ukzI_J5n-inniu2U7729ZfadP16_0");
 
@@ -504,8 +513,10 @@ public class Config {
 			hideObjects += objectName + ",";
 		}
 
-		String scolor = hideColor.getRed()+","+hideColor.getGreen()+","+hideColor.getBlue()+","+hideColor.getAlpha();
-		String ucolor = uiColor.getRed()+","+uiColor.getGreen()+","+uiColor.getBlue()+","+uiColor.getAlpha();
+		String scolor = hideColor.getRed() + "," + hideColor.getGreen() + "," + hideColor.getBlue() + ","
+				+ hideColor.getAlpha();
+		String ucolor = uiColor.getRed() + "," + uiColor.getGreen() + "," + uiColor.getBlue() + ","
+				+ uiColor.getAlpha();
 
 		options.setProperty("hcolor", scolor);
 		options.setProperty("uicolor", ucolor);
@@ -547,7 +558,7 @@ public class Config {
 		options.setProperty("showpath", showpath ? "true" : "false");
 		options.setProperty("showFlavors", showFlavors ? "true" : "false");
 		options.setProperty("showpathAll", showpathAll ? "true" : "false");
-		options.setProperty("flaskMeters", flaskMeters ? "true":"false");
+		options.setProperty("flaskMeters", flaskMeters ? "true" : "false");
 		options.setProperty("hideTressp", hideTressp ? "true" : "false");
 		options.setProperty("hideTheft", hideTheft ? "true" : "false");
 		options.setProperty("hideAsslt", hideAsslt ? "true" : "false");

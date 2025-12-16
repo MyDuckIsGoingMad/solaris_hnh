@@ -164,7 +164,7 @@ public class MiniMap extends Widget {
 										+ Utils.sessdate(mappingSession) + "/"
 										+ fileName + ".png");
 								ImageIO.write(img, "png", outputfile);
-							}//HUI
+							} // HUI
 						} finally {
 							Utils.readtileof(in);
 							in.close();
@@ -212,11 +212,12 @@ public class MiniMap extends Widget {
 		long newSession = System.currentTimeMillis();
 		String date = Utils.sessdate(newSession);
 		try {
-			if(Config.autoSaveMinimaps){
-			(new File("map/" + date)).mkdirs();
-			Writer currentSessionFile = new FileWriter("map/currentsession.js");
-			currentSessionFile.write("var currentSession = '" + date + "';\n");
-			currentSessionFile.close();}
+			if (Config.autoSaveMinimaps) {
+				(new File("map/" + date)).mkdirs();
+				Writer currentSessionFile = new FileWriter("map/currentsession.js");
+				currentSessionFile.write("var currentSession = '" + date + "';\n");
+				currentSessionFile.close();
+			}
 			mappingSession = newSession;
 			gridsHashes.clear();
 			coordHashes.clear();
@@ -231,8 +232,8 @@ public class MiniMap extends Widget {
 		newMappingSession();
 		ui.minimap = this;
 	}
-	
-	public void unlink(){
+
+	public void unlink() {
 		ui.minimap = null;
 	}
 
@@ -258,12 +259,14 @@ public class MiniMap extends Widget {
 			return c.mul(getScale());
 		}
 	}
-	
+
 	private Coord localToReal(Coord lc) {
 		Gob pl = ui.sess.glob.oc.getgob(mv.playergob);
-		if (pl == null) return Coord.z;
+		if (pl == null)
+			return Coord.z;
 		// MAGIC!~
-		return pl.rc.add(lc.sub(pl.rc.div(tileSize).add(mv.mc.div(tileSize).add(off.div(scales[scale])).inv()).add(sz.div(scales[scale]).div(2))).mul(tileSize));
+		return pl.rc.add(lc.sub(pl.rc.div(tileSize).add(mv.mc.div(tileSize).add(off.div(scales[scale])).inv())
+				.add(sz.div(scales[scale]).div(2))).mul(tileSize));
 	}
 
 	public void draw(GOut og) {
