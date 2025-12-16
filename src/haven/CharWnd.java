@@ -46,6 +46,10 @@ public class CharWnd extends Window {
 	public static ArrayList<SCapVal> sCaps = new ArrayList<SCapVal>();
 	public static FoodMeter foodm;
 	public static Study study;
+	private static final BufferedImage ilockc = Resource.loadimg("gfx/hud/lockc");
+	private static final BufferedImage ilockch = Resource.loadimg("gfx/hud/lockch");
+	private static final BufferedImage ilocko = Resource.loadimg("gfx/hud/locko");
+	private static final BufferedImage ilockoh = Resource.loadimg("gfx/hud/lockoh");
 	static Map<String, Attr> attrs = new TreeMap<String, Attr>();
 	public static final Tex missing = Resource.loadtex("gfx/invobjs/missing");
 	public static final Tex foodmimg = Resource.loadtex("gfx/hud/charsh/foodm");
@@ -701,7 +705,9 @@ public class CharWnd extends Window {
 		private Coord detsz = new Coord(110, 150);
 		private Coord detc = new Coord(-145, -75);
 		int attlimit, attused = 0;
-		long studylp, studylph;
+		long studylp, studylph = 0;
+		private IButton lockbtn;
+		private boolean locked;
 
 		public Study(Widget parent) {
 			super(Coord.z, new Coord(400, 295), parent);
@@ -717,6 +723,38 @@ public class CharWnd extends Window {
 
 			canhastrash = false;
 			visible = false;
+			createLockBtn();
+
+		}
+
+		private void createLockBtn() {
+			locked = Config.window_props.getProperty("study_locked", "false").equals("true");
+			lockbtn = new IButton(Coord.z, this, locked ? ilockc : ilocko, locked ? ilocko : ilockc,
+					locked ? ilockch : ilockoh) {
+				public void click() {
+					locked = !locked;
+					if (locked) {
+						up = ilockc;
+						down = ilocko;
+						hover = ilockch;
+					} else {
+						up = ilocko;
+						down = ilockc;
+						hover = ilockoh;
+					}
+					Config.setWindowOpt("study_locked", locked);
+				}
+			};
+			lockbtn.recthit = true;
+			lockbtn.c = new Coord(257, 235);
+		}
+
+		@Override
+		public boolean mousedown(Coord c, int button) {
+			if (locked && !c.isect(lockbtn.c, lockbtn.sz)) {
+				return false;
+			}
+			return super.mousedown(c, button);
 		}
 
 		private void upd() {
