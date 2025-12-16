@@ -30,6 +30,8 @@ import static haven.MCache.cmaps;
 import static haven.MCache.tileSize;
 import haven.INIFile.Pair;
 import haven.MCache.Grid;
+import myduckisgoingmad.DuckUtils;
+import myduckisgoingmad.MinimapHighlight;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -44,6 +46,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -77,6 +80,8 @@ public class MiniMap extends Widget {
 	public Set<Pair<Coord, Color>> profits = new HashSet<Pair<Coord, Color>>();
 	public Set<Pair<Coord, String>> hherbs = new HashSet<Pair<Coord, String>>();
 	public Set<Pair<Coord, Color>> players = new HashSet<Pair<Coord, Color>>();
+
+	public ArrayList<MinimapHighlight> highlights = new ArrayList<MinimapHighlight>();
 
 	/* End of new functions */
 
@@ -407,8 +412,7 @@ public class MiniMap extends Widget {
 				KerriUtils.drawVisSquare(g, tc, hsz);
 			}
 			if (Config.show_minimap_profits) {
-				KerriUtils.drawProfitMinimap(g, tc, hsz);
-				KerriUtils.drawHerbsMinimap(g, tc, hsz);
+				DuckUtils.drawMinimapHighlights(g, tc, hsz);
 			}
 			if (Config.show_minimap_players) {
 				KerriUtils.drawPlayersAtMinimap(g, tc, hsz);

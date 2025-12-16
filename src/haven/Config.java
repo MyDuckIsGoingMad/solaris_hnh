@@ -29,6 +29,7 @@ package haven;
 import static haven.Utils.getprop;
 
 import haven.INIFile.Pair;
+import myduckisgoingmad.config.HavenSettings;
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -138,6 +139,8 @@ public class Config {
 
 	public static boolean map_show_curiosities = true;
 
+	public static HavenSettings settings;
+
 	static {
 		FEPColorMap.put("STR", new Color(100, 100, 100));
 		FEPColorMap.put("AGI", new Color(100, 100, 100));
@@ -190,6 +193,7 @@ public class Config {
 			loadSmileys();
 			loadFEP();
 			loadCurios();
+			loadHighlight();
 		} catch (java.net.MalformedURLException e) {
 			throw (new RuntimeException(e));
 		}
@@ -256,6 +260,15 @@ public class Config {
 		} catch (IOException e) {
 		}
 
+	}
+
+	private static void loadHighlight() {
+		try {
+			settings = new HavenSettings("config/highlight.json");
+			settings.highlight.debugPrint();
+		} catch (IOException e) {
+			System.out.println("IO Exception: " + e.toString());
+		}
 	}
 
 	public static String mksmiley(String str) {

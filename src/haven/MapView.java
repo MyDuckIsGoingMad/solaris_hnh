@@ -32,6 +32,9 @@ import haven.INIFile.Pair;
 import haven.MCache.Grid;
 import haven.MCache.Overlay;
 import haven.Resource.Tile;
+import myduckisgoingmad.MinimapHighlight;
+import myduckisgoingmad.config.HighlightItem;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Constructor;
@@ -1214,16 +1217,30 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		g.chcolor();
 	}
 
-	private void drawBeastRadius(GOut g) {
+	private void drawKritterRadius(GOut g) {
 		String name;
-		g.chcolor(255, 0, 0, 96);
+		ui.minimappanel.mm.highlights.clear();
+
 		synchronized (glob.oc) {
 			for (Gob tg : glob.oc) {
 				name = tg.resname();
-				if ((tg.sc != null)
-						&& (name.indexOf("/cdv") < 0)
-						&& ((name.indexOf("kritter/boar") >= 0) || (name
-								.indexOf("kritter/bear") >= 0))) {
+
+				if (tg.sc == null || name.contains("/cdv")) {
+					continue;
+				}
+
+				HighlightItem item = Config.settings.highlight.findItem(name);
+
+				if (item == null) {
+					continue;
+				}
+
+				if (item.minimap) {
+					ui.minimappanel.mm.highlights.add(new MinimapHighlight(tg.rc, item));
+				}
+
+				if (item.radius) {
+					g.chcolor(item.color);
 					drawradius(g, tg.sc, 100);
 				}
 			}
@@ -1238,27 +1255,12 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 			ui.minimappanel.mm.profits.clear();
 			ui.minimappanel.mm.hherbs.clear();
 			ui.minimappanel.mm.players.clear();
+
 			synchronized (glob.oc) {
 				for (Gob tg : glob.oc) {
 					name = tg.resname();
 					if (tg.sc != null) {
 						int hit = 0;
-						for (Pair<String, Color> pp : Config.minimap_highlights) {
-							if (name.contains(pp.fst) && !name.contains("/cdv")) {
-								if (name.contains("herbs") && Config.drawIcons) {
-									String tmp;
-									if (name.contains("mussel")) {
-										// маму Лофтара ебал кароч
-										tmp = name.replace("terobjs/herbs", "invobjs");
-									} else {
-										tmp = name.replace("terobjs", "invobjs");
-									}
-									ui.minimappanel.mm.hherbs.add(new Pair<Coord, String>(tg.rc, tmp));
-								} else
-									ui.minimappanel.mm.profits.add(new Pair<Coord, Color>(tg.rc, pp.snd));
-								hit++;
-							}
-						}
 						if (name.contains("gfx/borka")) {
 							if (!Config.show_minimap_players)
 								continue;
@@ -1558,7 +1560,7 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		}
 
 		if (Config.showBeast) {
-			drawBeastRadius(g);
+			drawKritterRadius(g);
 		}
 		drawcurioses(g);
 		drawtracking(g);

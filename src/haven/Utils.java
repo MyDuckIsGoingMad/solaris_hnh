@@ -45,7 +45,7 @@ public class Utils {
 			.getRGBdefault();
 	private static Background bgworker = null;
 
-	static Coord imgsz(BufferedImage img) {
+	public static Coord imgsz(BufferedImage img) {
 		if (img == null)
 			return new Coord(1, 1);
 		return (new Coord(img.getWidth(), img.getHeight()));

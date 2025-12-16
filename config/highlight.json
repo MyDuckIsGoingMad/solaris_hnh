@@ -1,0 +1,324 @@
+{
+  "highlight": [
+    {
+      "group": "Forageables",
+      "items": [
+        {
+          "path": "gfx/terobjs/herbs/bloodstern",
+          "icon": "gfx/invobjs/herbs/bloodstern"
+        },
+        {
+          "path": "gfx/terobjs/herbs/blueberry",
+          "icon": "gfx/invobjs/herbs/blueberry",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/candleberry",
+          "icon": "gfx/invobjs/herbs/candleberry",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/cavebulb",
+          "icon": "gfx/invobjs/herbs/cavebulb",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/chantrelle",
+          "icon": "gfx/invobjs/herbs/chantrelle",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/fourleafclover",
+          "icon": "gfx/invobjs/herbs/fourleafclover",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/inkweed",
+          "icon": "gfx/invobjs/herbs/inkweed"
+        },
+        {
+          "path": "gfx/terobjs/herbs/mussel",
+          "icon": "gfx/invobjs/mussel"
+        },
+        {
+          "path": "gfx/terobjs/herbs/rustroot",
+          "icon": "gfx/invobjs/herbs/rustroot"
+        },
+        {
+          "path": "gfx/terobjs/herbs/spindlytaproot",
+          "icon": "gfx/invobjs/herbs/spindlytaproot",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/stingingnettle",
+          "icon": "gfx/invobjs/herbs/stingingnettle",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/windweed",
+          "icon": "gfx/invobjs/herbs/windweed"
+        },
+        {
+          "path": "gfx/terobjs/anthill",
+          "icon": "gfx/terobjs/anthill-r",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/caveclay",
+          "icon": "gfx/invobjs/clay-cave",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/feldspar",
+          "icon": "gfx/invobjs/stone-feldspar",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/grayclay",
+          "icon": "gfx/invobjs/clay-gray",
+          "minimap": true
+        }
+      ]
+    },
+    {
+      "group": "Curiosities",
+      "items": [
+        {
+          "path": "gfx/terobjs/herbs/bloatedbolete",
+          "icon": "gfx/invobjs/herbs/bloatedbolete",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/chimingbluebell",
+          "icon": "gfx/invobjs/herbs/chimingbluebell",
+          "color": "#b9f20d",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/dandelion",
+          "icon": "gfx/invobjs/herbs/dandelion",
+          "color": "#ffd675"
+        },
+        {
+          "path": "gfx/terobjs/herbs/edelweiss",
+          "icon": "gfx/invobjs/herbs/edelweiss",
+          "color": "#b9f20d",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/flotsam",
+          "icon": "gfx/invobjs/herbs/flotsam",
+          "color": "#b9f20d",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/frogscrown",
+          "icon": "gfx/invobjs/herbs/frogscrown",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/ladysmantle",
+          "icon": "gfx/invobjs/herbs/ladysmantle",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/glimmermoss",
+          "icon": "gfx/invobjs/herbs/glimmermoss",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/royaltoadstool",
+          "icon": "gfx/invobjs/herbs/royaltoadstool",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/stalagoom",
+          "icon": "gfx/invobjs/herbs/stalagoom",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/tangledbramble",
+          "icon": "gfx/invobjs/herbs/tangledbramble",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/thornythistle",
+          "icon": "gfx/invobjs/herbs/thornythistle",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/uncommonsnapdragon",
+          "icon": "gfx/invobjs/herbs/uncommonsnapdragon",
+          "color": "#ffd675",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/herbs/washedupbladderwrack",
+          "icon": "gfx/invobjs/herbs/washedupbladderwrack",
+          "color": "#ffd675",
+          "minimap": true
+        }
+      ]
+    },
+    {
+      "group": "Misc",
+      "items": [
+        {
+          "path": "gfx/terobjs/ridges/cavein-n",
+          "icon": "gfx/terobjs/ridges/cavein-n",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/ridges/cavein-w",
+          "icon": "gfx/terobjs/ridges/cavein-n",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/ridges/caveout-n",
+          "icon": "gfx/terobjs/ridges/cavein-n",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/ridges/caveout-w",
+          "icon": "gfx/terobjs/ridges/cavein-n",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/mining/minehole",
+          "icon": "gfx/terobjs/mining/minehole",
+          "minimap": true
+        },
+        {
+          "path": "gfx/terobjs/mining/ladder",
+          "icon": "gfx/terobjs/mining/ladder",
+          "minimap": true
+        }
+      ]
+    },
+    {
+      "group": "Kritter",
+      "items": [
+        {
+          "path": "kritter/pig",
+          "icon": "gfx/kritter/pig/piglet/standing/standing-1"
+        },
+        {
+          "path": "kritter/cow",
+          "icon": "gfx/kritter/cow/calf/standing/standing-1"
+        },
+        {
+          "path": "kritter/sheep",
+          "icon": "gfx/kritter/sheep/lamb/standing/standing-1"
+        },
+        {
+          "path": "kritter/bear",
+          "icon": "gfx/kritter/bear/body/standing/standing-0",
+          "color": "#ff797c",
+          "minimap": true,
+          "radius": true,
+          "danger": true
+        },
+        {
+          "path": "kritter/boar",
+          "icon": "gfx/kritter/boar/body/standing/standing-0",
+          "color": "#ff797c",
+          "minimap": true,
+          "radius": true,
+          "danger": true
+        },
+        {
+          "path": "kritter/wolf",
+          "icon": "gfx/kritter/hen/body/standing/standing-0",
+          "radius": true,
+          "minimap": true,
+          "danger": true
+        },
+        {
+          "path": "kritter/deer",
+          "icon": "gfx/kritter/hen/body/standing/standing-0",
+          "color": "#7BAF8E",
+          "minimap": true
+        },
+        {
+          "path": "kritter/fox",
+          "icon": "gfx/kritter/fox/body/standing/standing-0",
+          "color": "#AF8E5B",
+          "radius": true,
+          "minimap": true
+        },
+        {
+          "path": "kritter/hare",
+          "icon": "gfx/kritter/hare/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/hen",
+          "icon": "gfx/kritter/hen/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/aurochs",
+          "icon": "gfx/kritter/aurochs/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/mufflon",
+          "icon": "gfx/kritter/mufflon/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/frog",
+          "icon": "gfx/kritter/frog/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/rat",
+          "icon": "gfx/kritter/rat/body/standing/standing-0"
+        },
+        {
+          "path": "kritter/ladybug/ladybug",
+          "icon": "gfx/kritter/ladybug/ladybug"
+        },
+        {
+          "path": "kritter/dragonfly",
+          "icon": "gfx/invobjs/dragonfly-emerald"
+        },
+        { "path": "kritter/moth", "icon": "gfx/invobjs/silkmoth" },
+        {
+          "path": "kritter/dryad",
+          "icon": "gfx/kritter/dryad/body/walking/dryad-6",
+          "minimap": true
+        },
+        {
+          "path": "kritter/bram",
+          "icon": "paginae/build/bram",
+          "color": "0xFF66CC",
+          "danger": true
+        },
+        {
+          "path": "kritter/boat/boat",
+          "icon": "paginae/build/rowboat"
+        },
+        {
+          "path": "kritter/wagon",
+          "icon": "paginae/build/wagon",
+          "minimap": true
+        },
+        {
+          "path": "kritter/cart",
+          "icon": "paginae/build/cart"
+        },
+        {
+          "path": "kritter/troll",
+          "icon": "gfx/kritter/troll/body/standing/standing-0",
+          "minimap": true,
+          "radius": true,
+          "danger": true
+        }
+      ]
+    }
+  ]
+}
