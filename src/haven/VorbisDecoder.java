@@ -93,9 +93,13 @@ public class VorbisDecoder extends InputStream {
     
     public static void main(String[] args) throws Exception {
 	InputStream dec = new VorbisDecoder(new FileInputStream(args[0]));
+	
 	byte[] buf = new byte[4096];
 	int ret;
+	
 	while((ret = dec.read(buf)) >= 0)
 	    System.out.write(buf, 0, ret);
-    }
+
+	dec.close();
+    };
 }

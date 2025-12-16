@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ToolbarWnd extends Window implements DTarget, DropTarget {
+public class ToolbarWnd extends Window implements DropTarget {
 	public final static Tex bg = Resource.loadtex("gfx/hud/invsq");
 	private static final int BELTS_NUM = 15;
 	private static final BufferedImage ilockc = Resource

@@ -33,7 +33,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Equipory extends Window implements DTarget {
+public class Equipory extends Window {
     static final Pattern patt = Pattern.compile("Armor class: (\\d+)/(\\d+)", Pattern.CASE_INSENSITIVE);
     public List<Inventory> epoints;
     public List<Item> equed;

@@ -11,13 +11,12 @@ import java.util.HashMap;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 
-import union.JSBot.JSDeprecatedHaven;
+import union.JSBot.JSUnDeprecatedHaven;
 import union.JSUtils.StoppableContext;
 import union.JSUtils.StoppedExecutionException;
 import union.jsbot.JSHaven;
 import union.jsbot.JSMouse;
 
-@SuppressWarnings("deprecation")
 public class JSThread extends Thread {
 	/* Static */
 	public static HashMap<String, JSThread> scriptThreads = new HashMap<String, JSThread>();
@@ -47,7 +46,7 @@ public class JSThread extends Thread {
 			ScriptableObject.putProperty(jsScope, "out", jsOut);
 			try {
 				// Define classes here
-				ScriptableObject.defineClass(jsScope, JSDeprecatedHaven.class);
+				ScriptableObject.defineClass(jsScope, JSUnDeprecatedHaven.class);
 				
 			} catch (IllegalAccessException e) {
 				JSBot.JSError(e);

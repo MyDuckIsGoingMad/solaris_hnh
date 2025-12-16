@@ -144,7 +144,8 @@ public class OCache implements Iterable<Gob> {
 	if(!ismoving && !movequeue.isEmpty()){
 	    ismoving = true;
 	    UI.instance.mapview.moveto = movequeue.poll();
-	    movequeue.remove(0);
+		// ToDo: Looks like a bug, but who knows. Lets test how it work without it
+	    // movequeue.remove(0);
 	}
     }
     

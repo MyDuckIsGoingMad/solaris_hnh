@@ -68,8 +68,9 @@ public class JSBot {
 		JSScriptInfo.LoadAllSripts();
 	}
 
-	@Deprecated
-	public static class JSDeprecatedHaven extends ScriptableObject {
+	// Get rid of hungred of annoing warnings
+	// @Deprecated
+	public static class JSUnDeprecatedHaven extends ScriptableObject {
 		private static final long serialVersionUID = -8850370958392090478L;
 
 		@Override
@@ -77,7 +78,7 @@ public class JSBot {
 			return "JSHaven";
 		}
 		
-		public JSDeprecatedHaven() {
+		public JSUnDeprecatedHaven() {
 			
 		}
 		
