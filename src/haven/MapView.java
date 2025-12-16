@@ -1186,22 +1186,27 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		synchronized (glob.oc) {
 			for (Gob tg : glob.oc) {
 				name = tg.resname();
-				if(tg.sc == null || !name.contains("gfx/terobjs/plants/"))
+				if(tg.sc == null || !name.contains("gfx/terobjs/plants/")) {
 					continue;
+				}
 
 				Byte stage = tg.GetBlob(0);
 				
 				if(stage == null || stage < 3) {
 					continue;
 				}
-				
-				// Carrot and hemp have 4 stages and produce a different output at stage 3.
-				if(!(name.contains("carrot") || name.contains("hemp")) || stage == 4) {
-					g.chcolor(10,255,0, 64);
-				} else {
-					g.chcolor(255,215,0, 64);
-				}
 
+
+				// Carrot and hemp have 4 stages and produce a different output at stage 3.
+				if(stage == 3 && (name.contains("carrot") || name.contains("hemp"))) {
+					g.chcolor(255,215,0, 64);
+				// Tobacco and poppy have 4 stages as well
+				} else if (stage == 3 && (name.contains("tobacco") || name.contains("poppy"))) {
+					continue;
+				} else {
+					g.chcolor(10,255,0, 64);
+				}
+				
 				drawradius(g,tg.sc, 7);
 			}
 		}
