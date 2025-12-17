@@ -236,6 +236,15 @@
           "path": "gfx/terobjs/mining/ladder",
           "icon": "gfx/terobjs/mining/ladder",
           "minimap": true
+        },
+        {
+          "color": "#20B0C9",
+          "danger": false,
+          "icon": "gfx/terobjs/hearth",
+          "minimap": false,
+          "name": "Hearth Fire",
+          "path": "gfx/terobjs/hearth",
+          "radius": false
         }
       ]
     },
