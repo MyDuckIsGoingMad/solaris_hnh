@@ -28,6 +28,7 @@ package haven;
 
 import java.awt.Color;
 import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,7 +37,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import myduckisgoingmad.config.HighlightGroup;
 import myduckisgoingmad.config.HighlightItem;
+import myduckisgoingmad.config.HighlightGroupWnd;
 
 public class OptWnd extends Window {
 	public static final RichText.Foundry foundry = new RichText.Foundry(TextAttribute.FAMILY, "SansSerif",
@@ -54,6 +57,9 @@ public class OptWnd extends Window {
 	private Map<String, CamInfo> caminfomap = new HashMap<String, CamInfo>();
 	private Map<String, String> camname2type = new HashMap<String, String>();
 	private Map<String, String[]> camargs = new HashMap<String, String[]>();
+
+	private static final BufferedImage cfgimgu = Resource.loadimg("gfx/hud/buttons/centeru");
+	private static final BufferedImage cfgimgd = Resource.loadimg("gfx/hud/buttons/centerd");
 	private Comparator<String> camcomp = new Comparator<String>() {
 		public int compare(String a, String b) {
 			if (a.startsWith("The "))
@@ -529,100 +535,41 @@ public class OptWnd extends Window {
 		{ /* Hightlight tab */
 			tab = body.new Tab(new Coord(placer.next(80), 0), 80, "Hightlight");
 
-			new Label(new Coord(64, 30), tab, "Forageables");
 			int linePos = 40;
 
-			for (HighlightItem item : Config.settings.highlight.forageables.items) {
-
-				new Label(new Coord(4, linePos + 16), tab, item.name);
-
-				(new CheckBox(new Coord(80, linePos), tab, "radius") {
+			for (HighlightGroup group : Config.settings.highlight.groups()) {
+				(new CheckBox(new Coord(24, linePos), tab, group.name) {
 					public void changed(boolean val) {
-						item.radius = val;
+						group.enabled = val;
 						Config.settings.save();
 					}
-				}).a = item.radius;
+				}).a = group.enabled;
 
-				(new CheckBox(new Coord(140, linePos), tab, "minimap") {
-					public void changed(boolean val) {
-						item.minimap = val;
-						Config.settings.save();
+				new IButton(new Coord(1, linePos + 12), tab, cfgimgu, cfgimgd) {
+					private boolean isOpen = false;
+
+					public void click() {
+						if (isOpen) {
+							return;
+						}
+						isOpen = true;
+						HighlightGroupWnd wnd = new HighlightGroupWnd(ui.root, group.name);
+						wnd.setData(group, new HighlightGroupWnd.Callback() {
+							@Override
+							public void callback() {
+								isOpen = false;
+							}
+						});
 					}
-				}).a = item.minimap;
 
-				linePos += 16;
-			}
+					private Text tooltip = Text.render("Config group");
 
-			new Label(new Coord(320, 30), tab, "Curiosities");
-			linePos = 40;
-
-			for (HighlightItem item : Config.settings.highlight.curiosities.items) {
-
-				new Label(new Coord(240, linePos + 16), tab, item.name);
-
-				(new CheckBox(new Coord(340, linePos), tab, "radius") {
-					public void changed(boolean val) {
-						item.radius = val;
-						Config.settings.save();
+					@Override
+					public Object tooltip(Coord c, boolean again) {
+						return checkhit(c) ? tooltip : null;
 					}
-				}).a = item.radius;
-
-				(new CheckBox(new Coord(400, linePos), tab, "minimap") {
-					public void changed(boolean val) {
-						item.minimap = val;
-						Config.settings.save();
-					}
-				}).a = item.minimap;
-
-				linePos += 16;
-			}
-
-			new Label(new Coord(320, 290), tab, "Kritters");
-			linePos = 300;
-
-			for (HighlightItem item : Config.settings.highlight.kritters.items) {
-
-				new Label(new Coord(240, linePos + 16), tab, item.name);
-
-				(new CheckBox(new Coord(340, linePos), tab, "radius") {
-					public void changed(boolean val) {
-						item.radius = val;
-						Config.settings.save();
-					}
-				}).a = item.radius;
-
-				(new CheckBox(new Coord(400, linePos), tab, "minimap") {
-					public void changed(boolean val) {
-						item.minimap = val;
-						Config.settings.save();
-					}
-				}).a = item.minimap;
-
-				linePos += 16;
-			}
-
-			new Label(new Coord(64, 350), tab, "Misc");
-			linePos = 360;
-
-			for (HighlightItem item : Config.settings.highlight.misc.items) {
-
-				new Label(new Coord(4, linePos + 16), tab, item.name);
-
-				(new CheckBox(new Coord(80, linePos), tab, "radius") {
-					public void changed(boolean val) {
-						item.radius = val;
-						Config.settings.save();
-					}
-				}).a = item.radius;
-
-				(new CheckBox(new Coord(140, linePos), tab, "minimap") {
-					public void changed(boolean val) {
-						item.minimap = val;
-						Config.settings.save();
-					}
-				}).a = item.minimap;
-
-				linePos += 16;
+				};
+				linePos += 40;
 			}
 		}
 

@@ -1,5 +1,7 @@
 package myduckisgoingmad.config;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,17 @@ public class HighlightConfig {
                 System.out.println("Unknown highlight group: " + group.name);
                 break;
         }
+    }
+
+    public ArrayList<HighlightGroup> groups() {
+        ArrayList<HighlightGroup> result = new ArrayList<HighlightGroup>();
+
+        result.add(forageables);
+        result.add(curiosities);
+        result.add(kritters);
+        result.add(misc);
+
+        return result;
     }
 
     public HighlightItem findItem(String name, Boolean strict) {

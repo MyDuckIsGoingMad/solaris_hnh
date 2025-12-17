@@ -48,7 +48,7 @@ public class HighlightItem {
         json.put("path", path);
 
         DuckUtils.jsonPutNonNull(json, "icon", icon);
-        DuckUtils.jsonPutNonNull(json, "color", color);
+        DuckUtils.jsonPutNonNull(json, "color", String.format("#%06X", color.getRGB() & 0xFFFFFF));
         DuckUtils.jsonPutNonNull(json, "minimap", minimap);
         DuckUtils.jsonPutNonNull(json, "radius", radius);
         DuckUtils.jsonPutNonNull(json, "danger", danger);
