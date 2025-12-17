@@ -705,7 +705,7 @@ public class CharWnd extends Window {
 		private Coord detsz = new Coord(110, 150);
 		private Coord detc = new Coord(-145, -75);
 		int attlimit, attused = 0;
-		long studylp, studylph = 0;
+		long studylp, studylph;
 		private IButton lockbtn;
 		private boolean locked;
 
@@ -1013,7 +1013,7 @@ public class CharWnd extends Window {
 			ui.bind(study, studyid);
 
 		int bx = 10;
-		new IButton(new Coord(bx, 320), this,
+		new IButton(new Coord(bx, 350), this,
 				Resource.loadimg("gfx/hud/charsh/attribup"),
 				Resource.loadimg("gfx/hud/charsh/attribdown")) {
 			public void click() {
@@ -1024,7 +1024,7 @@ public class CharWnd extends Window {
 			}
 		}.tooltip = "Attributes";
 		if (studyid >= 0) {
-			new IButton(new Coord(bx += 70, 320), this,
+			new IButton(new Coord(bx += 70, 350), this,
 					Resource.loadimg("gfx/hud/charsh/ideasup"),
 					Resource.loadimg("gfx/hud/charsh/ideasdown")) {
 				public void click() {
@@ -1035,7 +1035,7 @@ public class CharWnd extends Window {
 				}
 			}.tooltip = "Study";
 		}
-		new IButton(new Coord(bx += 70, 320), this,
+		new IButton(new Coord(bx += 70, 350), this,
 				Resource.loadimg("gfx/hud/charsh/skillsup"),
 				Resource.loadimg("gfx/hud/charsh/skillsdown")) {
 			public void click() {
@@ -1045,7 +1045,7 @@ public class CharWnd extends Window {
 				study.visible = false;
 			}
 		}.tooltip = "Skills";
-		new IButton(new Coord(bx += 70, 320), this,
+		new IButton(new Coord(bx += 70, 350), this,
 				Resource.loadimg("gfx/hud/charsh/worshipup"),
 				Resource.loadimg("gfx/hud/charsh/worshipdown")) {
 			public void click() {
