@@ -265,7 +265,6 @@ public class Config {
 	private static void loadHighlight() {
 		try {
 			settings = new HavenSettings("config/highlight.json");
-			settings.highlight.debugPrint();
 		} catch (IOException e) {
 			System.out.println("IO Exception: " + e.toString());
 		}

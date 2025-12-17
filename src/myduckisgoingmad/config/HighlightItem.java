@@ -12,7 +12,7 @@ public class HighlightItem {
     public String name;
     public String path;
     public String icon;
-    public Color color = new Color(142, 142, 142);
+    public Color color = new Color(90, 150, 250, 64);
     public boolean minimap = false;
     public boolean radius = false;
     public boolean danger = false;
@@ -71,11 +71,8 @@ public class HighlightItem {
 
         if (json.has("icon")) {
             item.icon = json.getString("icon");
-
-            if (item.minimap) {
-                item.info = new HLInfo(item.path, item.icon);
-                item.info.setColor(item.color);
-            }
+            item.info = new HLInfo(item.path, item.icon);
+            item.info.setColor(item.color);
         }
 
         return item;
