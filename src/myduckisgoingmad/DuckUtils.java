@@ -6,8 +6,11 @@ import org.json.JSONObject;
 import static haven.MCache.tileSize;
 import haven.Coord;
 import haven.GOut;
+import haven.Gob;
 import haven.Tex;
 import haven.UI;
+import union.JSBot;
+import union.JSBotUtils;
 
 public class DuckUtils {
     public static void jsonPutNonNull(JSONObject json, String key, Object value) throws JSONException {
@@ -42,4 +45,30 @@ public class DuckUtils {
             }
         }
     }
+
+    public static Gob findNearestGob(String resName, Coord position, int radius) {
+        Gob result = null;
+        double min = radius;
+
+        synchronized (UI.instance.mapview.glob.oc) {
+            for (Gob gob : UI.instance.mapview.glob.oc) {
+                if (gob.resname() != resName) {
+                    continue;
+                }
+
+                double dist = gob.position().dist(position);
+                if ((dist <= radius) && (result == null || dist < min)) {
+                    result = gob;
+                    min = dist;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Gob findNearestGob(String resName, Coord rc) {
+        return findNearestGob(resName, rc, 10);
+    }
+
 }
