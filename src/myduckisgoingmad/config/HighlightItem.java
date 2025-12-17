@@ -9,6 +9,7 @@ import ender.HLInfo;
 import myduckisgoingmad.DuckUtils;
 
 public class HighlightItem {
+    public String name;
     public String path;
     public String icon;
     public Color color = new Color(142, 142, 142);
@@ -17,7 +18,8 @@ public class HighlightItem {
     public boolean danger = false;
     public HLInfo info;
 
-    public HighlightItem(String path) {
+    public HighlightItem(String name, String path) {
+        this.name = name;
         this.path = path;
     }
 
@@ -36,11 +38,13 @@ public class HighlightItem {
     }
 
     public String toString() {
-        return String.format("HighLightItem(%s,%s,%s,%b,%b,%b)", path, icon, color, minimap, radius, danger);
+        return String.format("HighLightItem(%s, %s, %s, %s, %b, %b, %b)", name, path, icon, color, minimap, radius,
+                danger);
     }
 
     public JSONObject toJson() throws JSONException {
         JSONObject json = new JSONObject();
+        json.put("name", name);
         json.put("path", path);
 
         DuckUtils.jsonPutNonNull(json, "icon", icon);
@@ -53,8 +57,9 @@ public class HighlightItem {
     }
 
     public static HighlightItem fromJson(JSONObject json) throws JSONException {
+        String name = json.getString("name");
         String path = json.getString("path");
-        HighlightItem item = new HighlightItem(path);
+        HighlightItem item = new HighlightItem(name, path);
 
         item.minimap = DuckUtils.jsonGetBoolean(json, "minimap", false);
         item.radius = DuckUtils.jsonGetBoolean(json, "radius", false);

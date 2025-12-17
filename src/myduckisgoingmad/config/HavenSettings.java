@@ -41,14 +41,16 @@ public class HavenSettings {
         }
     }
 
-    public void save() throws IOException {
+    public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(configPath.toFile()))) {
             try {
                 JSONObject json = highlight.toJson();
                 writer.write(json.toString(2));
             } catch (JSONException e) {
-                throw new IOException("Failed to create JSON configuration", e);
+
             }
+        } catch (IOException e) {
+            System.err.println("Failed to save highlight config: " + e);
         }
     }
 }

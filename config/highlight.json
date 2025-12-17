@@ -4,76 +4,92 @@
       "group": "Forageables",
       "items": [
         {
+          "name": "Bloodstern",
           "path": "gfx/terobjs/herbs/bloodstern",
           "icon": "gfx/invobjs/herbs/bloodstern"
         },
         {
+          "name": "Blueberry",
           "path": "gfx/terobjs/herbs/blueberry",
           "icon": "gfx/invobjs/herbs/blueberry",
           "minimap": true
         },
         {
+          "name": "Candleberry",
           "path": "gfx/terobjs/herbs/candleberry",
           "icon": "gfx/invobjs/herbs/candleberry",
           "minimap": true
         },
         {
+          "name": "Cavebulb",
           "path": "gfx/terobjs/herbs/cavebulb",
           "icon": "gfx/invobjs/herbs/cavebulb",
           "minimap": true
         },
         {
+          "name": "Chantrelle",
           "path": "gfx/terobjs/herbs/chantrelle",
           "icon": "gfx/invobjs/herbs/chantrelle",
           "minimap": true
         },
         {
+          "name": "Fourleaf Clover",
           "path": "gfx/terobjs/herbs/fourleafclover",
           "icon": "gfx/invobjs/herbs/fourleafclover",
           "minimap": true
         },
         {
+          "name": "Inkweed",
           "path": "gfx/terobjs/herbs/inkweed",
           "icon": "gfx/invobjs/herbs/inkweed"
         },
         {
+          "name": "Mussel",
           "path": "gfx/terobjs/herbs/mussel",
           "icon": "gfx/invobjs/mussel"
         },
         {
+          "name": "Rustroot",
           "path": "gfx/terobjs/herbs/rustroot",
           "icon": "gfx/invobjs/herbs/rustroot"
         },
         {
+          "name": "Spindly Taproot",
           "path": "gfx/terobjs/herbs/spindlytaproot",
           "icon": "gfx/invobjs/herbs/spindlytaproot",
           "minimap": true
         },
         {
+          "name": "Stinging Nettle",
           "path": "gfx/terobjs/herbs/stingingnettle",
           "icon": "gfx/invobjs/herbs/stingingnettle",
           "minimap": true
         },
         {
+          "name": "Windweed",
           "path": "gfx/terobjs/herbs/windweed",
           "icon": "gfx/invobjs/herbs/windweed"
         },
         {
+          "name": "Anthill",
           "path": "gfx/terobjs/anthill",
           "icon": "gfx/terobjs/anthill-r",
           "minimap": true
         },
         {
+          "name": "Cave Clay",
           "path": "gfx/terobjs/herbs/caveclay",
           "icon": "gfx/invobjs/clay-cave",
           "minimap": true
         },
         {
+          "name": "Feldspar",
           "path": "gfx/terobjs/herbs/feldspar",
           "icon": "gfx/invobjs/stone-feldspar",
           "minimap": true
         },
         {
+          "name": "Gray Clay",
           "path": "gfx/terobjs/herbs/grayclay",
           "icon": "gfx/invobjs/clay-gray",
           "minimap": true
@@ -84,83 +100,97 @@
       "group": "Curiosities",
       "items": [
         {
+          "name": "Bloated Bolete",
           "path": "gfx/terobjs/herbs/bloatedbolete",
           "icon": "gfx/invobjs/herbs/bloatedbolete",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Chiming Bluebell",
           "path": "gfx/terobjs/herbs/chimingbluebell",
           "icon": "gfx/invobjs/herbs/chimingbluebell",
           "color": "#b9f20d",
           "minimap": true
         },
         {
+          "name": "Dandelion",
           "path": "gfx/terobjs/herbs/dandelion",
           "icon": "gfx/invobjs/herbs/dandelion",
           "color": "#ffd675"
         },
         {
+          "name": "Edelweiss",
           "path": "gfx/terobjs/herbs/edelweiss",
           "icon": "gfx/invobjs/herbs/edelweiss",
           "color": "#b9f20d",
           "minimap": true
         },
         {
+          "name": "Flotsam",
           "path": "gfx/terobjs/herbs/flotsam",
           "icon": "gfx/invobjs/herbs/flotsam",
           "color": "#b9f20d",
           "minimap": true
         },
         {
+          "name": "Frog's Crown",
           "path": "gfx/terobjs/herbs/frogscrown",
           "icon": "gfx/invobjs/herbs/frogscrown",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Lady's Mantle",
           "path": "gfx/terobjs/herbs/ladysmantle",
           "icon": "gfx/invobjs/herbs/ladysmantle",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Glimmermoss",
           "path": "gfx/terobjs/herbs/glimmermoss",
           "icon": "gfx/invobjs/herbs/glimmermoss",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Royal Toadstool",
           "path": "gfx/terobjs/herbs/royaltoadstool",
           "icon": "gfx/invobjs/herbs/royaltoadstool",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Stalagoom",
           "path": "gfx/terobjs/herbs/stalagoom",
           "icon": "gfx/invobjs/herbs/stalagoom",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Tangled Bramble",
           "path": "gfx/terobjs/herbs/tangledbramble",
           "icon": "gfx/invobjs/herbs/tangledbramble",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Thorny Thistle",
           "path": "gfx/terobjs/herbs/thornythistle",
           "icon": "gfx/invobjs/herbs/thornythistle",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Uncommon Snapdragon",
           "path": "gfx/terobjs/herbs/uncommonsnapdragon",
           "icon": "gfx/invobjs/herbs/uncommonsnapdragon",
           "color": "#ffd675",
           "minimap": true
         },
         {
+          "name": "Washed-up Bladderwrack",
           "path": "gfx/terobjs/herbs/washedupbladderwrack",
           "icon": "gfx/invobjs/herbs/washedupbladderwrack",
           "color": "#ffd675",
@@ -172,31 +202,37 @@
       "group": "Misc",
       "items": [
         {
+          "name": "Cave-in (N)",
           "path": "gfx/terobjs/ridges/cavein-n",
           "icon": "gfx/terobjs/ridges/cavein-n",
           "minimap": true
         },
         {
+          "name": "Cave-in (W)",
           "path": "gfx/terobjs/ridges/cavein-w",
           "icon": "gfx/terobjs/ridges/cavein-n",
           "minimap": true
         },
         {
+          "name": "Cave-out (N)",
           "path": "gfx/terobjs/ridges/caveout-n",
           "icon": "gfx/terobjs/ridges/cavein-n",
           "minimap": true
         },
         {
+          "name": "Cave-out (W)",
           "path": "gfx/terobjs/ridges/caveout-w",
           "icon": "gfx/terobjs/ridges/cavein-n",
           "minimap": true
         },
         {
+          "name": "Minehole",
           "path": "gfx/terobjs/mining/minehole",
           "icon": "gfx/terobjs/mining/minehole",
           "minimap": true
         },
         {
+          "name": "Ladder",
           "path": "gfx/terobjs/mining/ladder",
           "icon": "gfx/terobjs/mining/ladder",
           "minimap": true
@@ -207,18 +243,22 @@
       "group": "Kritter",
       "items": [
         {
+          "name": "Pig",
           "path": "kritter/pig",
           "icon": "gfx/kritter/pig/piglet/standing/standing-1"
         },
         {
+          "name": "Cow",
           "path": "kritter/cow",
           "icon": "gfx/kritter/cow/calf/standing/standing-1"
         },
         {
+          "name": "Sheep",
           "path": "kritter/sheep",
           "icon": "gfx/kritter/sheep/lamb/standing/standing-1"
         },
         {
+          "name": "Bear",
           "path": "kritter/bear",
           "icon": "gfx/kritter/bear/body/standing/standing-0",
           "color": "#ff797c",
@@ -227,6 +267,7 @@
           "danger": true
         },
         {
+          "name": "Boar",
           "path": "kritter/boar",
           "icon": "gfx/kritter/boar/body/standing/standing-0",
           "color": "#ff797c",
@@ -235,6 +276,7 @@
           "danger": true
         },
         {
+          "name": "Wolf",
           "path": "kritter/wolf",
           "icon": "gfx/kritter/hen/body/standing/standing-0",
           "radius": true,
@@ -242,12 +284,14 @@
           "danger": true
         },
         {
+          "name": "Deer",
           "path": "kritter/deer",
           "icon": "gfx/kritter/hen/body/standing/standing-0",
           "color": "#7BAF8E",
           "minimap": true
         },
         {
+          "name": "Fox",
           "path": "kritter/fox",
           "icon": "gfx/kritter/fox/body/standing/standing-0",
           "color": "#AF8E5B",
@@ -255,63 +299,81 @@
           "minimap": true
         },
         {
+          "name": "Hare",
           "path": "kritter/hare",
           "icon": "gfx/kritter/hare/body/standing/standing-0"
         },
         {
+          "name": "Hen",
           "path": "kritter/hen",
           "icon": "gfx/kritter/hen/body/standing/standing-0"
         },
         {
+          "name": "Aurochs",
           "path": "kritter/aurochs",
           "icon": "gfx/kritter/aurochs/body/standing/standing-0"
         },
         {
+          "name": "Mufflon",
           "path": "kritter/mufflon",
           "icon": "gfx/kritter/mufflon/body/standing/standing-0"
         },
         {
+          "name": "Frog",
           "path": "kritter/frog",
           "icon": "gfx/kritter/frog/body/standing/standing-0"
         },
         {
+          "name": "Rat",
           "path": "kritter/rat",
           "icon": "gfx/kritter/rat/body/standing/standing-0"
         },
         {
+          "name": "Ladybug",
           "path": "kritter/ladybug/ladybug",
           "icon": "gfx/kritter/ladybug/ladybug"
         },
         {
+          "name": "Dragonfly",
           "path": "kritter/dragonfly",
           "icon": "gfx/invobjs/dragonfly-emerald"
         },
-        { "path": "kritter/moth", "icon": "gfx/invobjs/silkmoth" },
         {
+          "name": "Moth",
+          "path": "kritter/moth",
+          "icon": "gfx/invobjs/silkmoth"
+        },
+        {
+          "name": "Dryad",
           "path": "kritter/dryad",
           "icon": "gfx/kritter/dryad/body/walking/dryad-6",
           "minimap": true
         },
         {
+          "name": "Bram",
           "path": "kritter/bram",
           "icon": "paginae/build/bram",
           "color": "0xFF66CC",
           "danger": true
         },
         {
+          "name": "Boat",
           "path": "kritter/boat/boat",
           "icon": "paginae/build/rowboat"
         },
         {
+          "name": "Wagon",
           "path": "kritter/wagon",
           "icon": "paginae/build/wagon",
           "minimap": true
         },
         {
+          "name": "Cart",
           "path": "kritter/cart",
           "icon": "paginae/build/cart"
         },
         {
+          "name": "Troll",
           "path": "kritter/troll",
           "icon": "gfx/kritter/troll/body/standing/standing-0",
           "minimap": true,

@@ -34,6 +34,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+
+import myduckisgoingmad.config.HighlightItem;
 
 public class OptWnd extends Window {
 	public static final RichText.Foundry foundry = new RichText.Foundry(TextAttribute.FAMILY, "SansSerif",
@@ -73,7 +76,7 @@ public class OptWnd extends Window {
 	}
 
 	public OptWnd(Coord c, Widget parent) {
-		super(c, new Coord(440, 540), parent, "Options");
+		super(c, new Coord(484, 540), parent, "Options");
 
 		body = new Tabs(Coord.z, new Coord(400, 540), this) {
 			public void changed(Tab from, Tab to) {
@@ -84,8 +87,20 @@ public class OptWnd extends Window {
 		};
 		Widget tab;
 
+		class TabPlacer {
+			int pos = 0;
+
+			int next(int width) {
+				int current = pos;
+				pos += 4 + width; // add spacing between buttons
+				return current;
+			}
+		}
+
+		TabPlacer placer = new TabPlacer();
+
 		{ /* GENERAL TAB */
-			tab = body.new Tab(new Coord(0, 0), 60, "General");
+			tab = body.new Tab(new Coord(placer.next(60), 0), 60, "General");
 
 			new Button(new Coord(250, 505), 125, tab, "Quit") {
 				public void click() {
@@ -251,7 +266,7 @@ public class OptWnd extends Window {
 
 		{ /* CAMERA TAB */
 			curcam = Utils.getpref("defcam", "border");
-			tab = body.new Tab(new Coord(70, 0), 60, "Camera");
+			tab = body.new Tab(new Coord(placer.next(60), 0), 60, "Camera");
 
 			final RichTextBox caminfo = new RichTextBox(new Coord(180, 70), new Coord(210, 180), tab, "", foundry);
 			caminfo.bg = new java.awt.Color(0, 0, 0, 64);
@@ -379,7 +394,7 @@ public class OptWnd extends Window {
 		}
 
 		{ /* AUDIO TAB */
-			tab = body.new Tab(new Coord(140, 0), 60, "Audio");
+			tab = body.new Tab(new Coord(placer.next(60), 0), 60, "Audio");
 
 			new Label(new Coord(10, 40), tab, "Sound");
 			new Frame(new Coord(10, 65), new Coord(20, 206), tab);
@@ -441,7 +456,7 @@ public class OptWnd extends Window {
 		}
 
 		{ /* HIDE OBJECTS TAB */
-			tab = body.new Tab(new Coord(210, 0), 80, "Hide Objects");
+			tab = body.new Tab(new Coord(placer.next(80), 0), 80, "Hide Objects");
 
 			String[][] checkboxesList = { { "Walls", "gfx/arch/walls" },
 					{ "Gates", "gfx/arch/gates" },
@@ -511,8 +526,108 @@ public class OptWnd extends Window {
 			}).a = Config.hideMurd;
 		}
 
+		{ /* Hightlight tab */
+			tab = body.new Tab(new Coord(placer.next(80), 0), 80, "Hightlight");
+
+			new Label(new Coord(64, 30), tab, "Forageables");
+			int linePos = 40;
+
+			for (HighlightItem item : Config.settings.highlight.forageables.items) {
+
+				new Label(new Coord(4, linePos + 16), tab, item.name);
+
+				(new CheckBox(new Coord(80, linePos), tab, "radius") {
+					public void changed(boolean val) {
+						item.radius = val;
+						Config.settings.save();
+					}
+				}).a = item.radius;
+
+				(new CheckBox(new Coord(140, linePos), tab, "minimap") {
+					public void changed(boolean val) {
+						item.minimap = val;
+						Config.settings.save();
+					}
+				}).a = item.minimap;
+
+				linePos += 16;
+			}
+
+			new Label(new Coord(320, 30), tab, "Curiosities");
+			linePos = 40;
+
+			for (HighlightItem item : Config.settings.highlight.curiosities.items) {
+
+				new Label(new Coord(240, linePos + 16), tab, item.name);
+
+				(new CheckBox(new Coord(340, linePos), tab, "radius") {
+					public void changed(boolean val) {
+						item.radius = val;
+						Config.settings.save();
+					}
+				}).a = item.radius;
+
+				(new CheckBox(new Coord(400, linePos), tab, "minimap") {
+					public void changed(boolean val) {
+						item.minimap = val;
+						Config.settings.save();
+					}
+				}).a = item.minimap;
+
+				linePos += 16;
+			}
+
+			new Label(new Coord(320, 290), tab, "Kritters");
+			linePos = 300;
+
+			for (HighlightItem item : Config.settings.highlight.kritters.items) {
+
+				new Label(new Coord(240, linePos + 16), tab, item.name);
+
+				(new CheckBox(new Coord(340, linePos), tab, "radius") {
+					public void changed(boolean val) {
+						item.radius = val;
+						Config.settings.save();
+					}
+				}).a = item.radius;
+
+				(new CheckBox(new Coord(400, linePos), tab, "minimap") {
+					public void changed(boolean val) {
+						item.minimap = val;
+						Config.settings.save();
+					}
+				}).a = item.minimap;
+
+				linePos += 16;
+			}
+
+			new Label(new Coord(64, 350), tab, "Misc");
+			linePos = 360;
+
+			for (HighlightItem item : Config.settings.highlight.misc.items) {
+
+				new Label(new Coord(4, linePos + 16), tab, item.name);
+
+				(new CheckBox(new Coord(80, linePos), tab, "radius") {
+					public void changed(boolean val) {
+						item.radius = val;
+						Config.settings.save();
+					}
+				}).a = item.radius;
+
+				(new CheckBox(new Coord(140, linePos), tab, "minimap") {
+					public void changed(boolean val) {
+						item.minimap = val;
+						Config.settings.save();
+					}
+				}).a = item.minimap;
+
+				linePos += 16;
+			}
+		}
+
 		{ /* CUSTOM TAB */
-			tab = body.new Tab(new Coord(300, 0), 60, "Custom");
+			tab = body.new Tab(new Coord(placer.next(60), 0), 60, "Custom");
 
 			new Label(new Coord(15, 40), tab, "R");
 			new Label(new Coord(40, 40), tab, "G");
@@ -700,7 +815,7 @@ public class OptWnd extends Window {
 		}
 
 		{ /* INFO TAB */
-			tab = body.new Tab(new Coord(370, 0), 60, "Client Info");
+			tab = body.new Tab(new Coord(placer.next(60), 0), 60, "Client Info");
 
 			final RichTextBox helpinfo = new RichTextBox(new Coord(5, 30), new Coord(400, 160), tab,
 					"To report an issue with the client (or provide suggestions) please contact the developer, @trevorhnh, on discord.",
