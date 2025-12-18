@@ -702,10 +702,10 @@ public class CharWnd extends Window {
 		Label attlbl, lplabel, lphlabel;
 		Window wnd;
 		boolean svis, attached = true;
-		private Coord detsz = new Coord(110, 150);
+		private Coord detsz = new Coord(110, 196);
 		private Coord detc = new Coord(-145, -75);
 		int attlimit, attused = 0;
-		long studylp, studylph;
+		long studylp, studylph = 0;
 		private IButton lockbtn;
 		private boolean locked;
 
@@ -724,7 +724,6 @@ public class CharWnd extends Window {
 			canhastrash = false;
 			visible = false;
 			createLockBtn();
-
 		}
 
 		private void createLockBtn() {
@@ -746,7 +745,7 @@ public class CharWnd extends Window {
 				}
 			};
 			lockbtn.recthit = true;
-			lockbtn.c = new Coord(257, 235);
+			lockbtn.c = new Coord(248, 264);
 		}
 
 		@Override
@@ -832,8 +831,8 @@ public class CharWnd extends Window {
 							Item it = (Item) sitem;
 							if (((Item) sitem).curio_stat == null)
 								continue;
-							studylp += Math.round(it.curio_stat.baseLP * it.qmult * UI.instance.wnd_char.getExpMode());
-							studylph += Math.round((studylp / it.curio_stat.studyTime) * 60);
+							studylp += it.getLP();
+							studylph += it.getLPH();
 						}
 					}
 				}

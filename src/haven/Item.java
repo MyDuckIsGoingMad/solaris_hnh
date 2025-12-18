@@ -322,19 +322,51 @@ public class Item extends Widget implements DTarget {
 	public double qmult;
 	private String FEP = null;
 
+	public int getLP() {
+		if (curio_stat == null) {
+			return 0;
+		}
+
+		return (int) (curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode());
+	}
+
+	public int getLPH() {
+		if (curio_stat == null) {
+			return 0;
+		}
+
+		return (int) ((double) getLP() / (double) curio_stat.studyTime * 60.0);
+	}
+
+	public int getLPW() {
+		if (curio_stat == null) {
+			return 0;
+		}
+
+		return (int) ((double) getLP() / (double) curio_stat.attention);
+	}
+
+	public int getLPHW() {
+		if (curio_stat == null) {
+			return 0;
+		}
+
+		return (int) ((double) getLPH() / (double) curio_stat.attention);
+	}
+
 	private void calcCurio() {
 		if (this.curio_stat == null) {
 			return;
 		}
 
-		long LP = Math.round(curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode());
-		long LPM = Math.round(LP / curio_stat.studyTime);
 		int time = curio_stat.studyTime * (100 - meter - 1) / 100;
-		int h = time / 60;
-		int m = time % 60;
-		long LPH = Math.round(LPM * 60);
-		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %dh %2dm\nLP/H: %d", LP, curio_stat.attention, h, m,
-				LPH);
+		String studyTimeString = meter != 0 ? min2hours(time) + " (" + min2hours(curio_stat.studyTime) + ")"
+				: min2hours(curio_stat.studyTime);
+		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %s\nLP/H: %d; LP/W: %d", getLP(),
+				curio_stat.attention,
+				studyTimeString,
+				getLPH(),
+				getLPW());
 	}
 
 	private void calcFEP() {
@@ -483,8 +515,7 @@ public class Item extends Widget implements DTarget {
 			}
 			if (curio_stat != null && qmult > 0) {
 				if (UI.instance.wnd_char != null)
-					tt += "\nLP: $col[205,205,0]{"
-							+ Math.round(curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode()) + "}";
+					tt += "\nLP: $col[205,205,0]{" + getLP() + "}";
 				if (meter > 0) {
 					double time = (double) meter / 100;
 					tt += " in " + min2hours(curio_stat.studyTime - (int) (curio_stat.studyTime * time));
