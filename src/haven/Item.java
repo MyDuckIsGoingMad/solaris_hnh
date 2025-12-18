@@ -53,10 +53,10 @@ public class Item extends Widget implements DTarget {
 	String curioStr = null;
 	Tex sh;
 	Color olcol = null;
-	static Color clrWater = new Color(48, 48, 154,210);
-	static Color clrWine = new Color(139, 71, 137,210);
-	static Color clrHoney = new Color(238, 173, 14,210);
-	static Color clrWort = new Color(168, 47, 26,210);
+	static Color clrWater = new Color(48, 48, 154, 210);
+	static Color clrWine = new Color(139, 71, 137, 210);
+	static Color clrHoney = new Color(238, 173, 14, 210);
+	static Color clrWort = new Color(168, 47, 26, 210);
 	Tex mask = null;
 	public int meter = 0;
 	public double count_of_value = -1;
@@ -175,7 +175,7 @@ public class Item extends Widget implements DTarget {
 	public Coord size() {
 		if (res.get() != null) {
 			Tex tex = res.get().layer(Resource.imgc).tex();
-			if(tex == null)
+			if (tex == null)
 				return new Coord(1, 1);
 			else
 				return tex.sz().div(30);
@@ -241,11 +241,15 @@ public class Item extends Widget implements DTarget {
 				g.chcolor();
 			}
 		}
-		
-		if (FEP == null) { calcFEP(); }
-		if (curioStr == null) { calcCurio(); }
-		
-		if(Config.flaskMeters){
+
+		if (FEP == null) {
+			calcFEP();
+		}
+		if (curioStr == null) {
+			calcCurio();
+		}
+
+		if (Config.flaskMeters) {
 			if (ttres.name.lastIndexOf("waterflask") > 0) {
 				drawBar(g, 2, clrWater, 7);
 			} else if (ttres.name.lastIndexOf("glass-winef") > 0) {
@@ -262,11 +266,12 @@ public class Item extends Widget implements DTarget {
 				Color clr;
 				if (ttres.name.lastIndexOf("water") > 0)
 					clr = clrWater;
-				else if (ttres.name.lastIndexOf("wine") > 0 || ttres.name.lastIndexOf("vinegar") > 0 || ttres.name.lastIndexOf("grapejuice") > 0)
+				else if (ttres.name.lastIndexOf("wine") > 0 || ttres.name.lastIndexOf("vinegar") > 0
+						|| ttres.name.lastIndexOf("grapejuice") > 0)
 					clr = clrWine;
 				else if (ttres.name.lastIndexOf("honey") > 0)
 					clr = clrHoney;
-				else if (ttres.name.lastIndexOf("wort") > 0 )
+				else if (ttres.name.lastIndexOf("wort") > 0)
 					clr = clrWort;
 				else
 					clr = Color.LIGHT_GRAY;
@@ -276,9 +281,9 @@ public class Item extends Widget implements DTarget {
 		}
 	}
 
-	static Tex getqtex(int q){
+	static Tex getqtex(int q) {
 		synchronized (qmap) {
-			if(qmap.containsKey(q)){
+			if (qmap.containsKey(q)) {
 				return qmap.get(q);
 			} else {
 				BufferedImage img = Text.render(Integer.toString(q)).img;
@@ -294,14 +299,14 @@ public class Item extends Widget implements DTarget {
 		BufferedImage img = res.layer(Resource.imgc).img;
 		Coord sz = Utils.imgsz(img);
 		BufferedImage sh = new BufferedImage(sz.x, sz.y, BufferedImage.TYPE_INT_ARGB);
-		for(int y = 0; y < sz.y; y++) {
-			for(int x = 0; x < sz.x; x++) {
+		for (int y = 0; y < sz.y; y++) {
+			for (int x = 0; x < sz.x; x++) {
 				long c = img.getRGB(x, y) & 0x00000000ffffffffL;
-				int a = (int)((c & 0xff000000) >> 24);
+				int a = (int) ((c & 0xff000000) >> 24);
 				sh.setRGB(x, y, (a / 2) << 24);
 			}
 		}
-		return(new TexI(sh));
+		return (new TexI(sh));
 	}
 
 	public String name() {
@@ -318,55 +323,66 @@ public class Item extends Widget implements DTarget {
 	private String FEP = null;
 
 	private void calcCurio() {
-		if (this.curio_stat == null) { return; }
-			
+		if (this.curio_stat == null) {
+			return;
+		}
+
 		long LP = Math.round(curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode());
 		long LPM = Math.round(LP / curio_stat.studyTime);
-		int time = curio_stat.studyTime*(100 - meter - 1)/100;
-		int h = time/60;
-		int m = time%60;
+		int time = curio_stat.studyTime * (100 - meter - 1) / 100;
+		int h = time / 60;
+		int m = time % 60;
 		long LPH = Math.round(LPM * 60);
-		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %dh %2dm\nLP/H: %d", LP, curio_stat.attention, h, m, LPH);
+		curioStr = String.format("\nLP: %d, Weight: %d\nStudy time: %dh %2dm\nLP/H: %d", LP, curio_stat.attention, h, m,
+				LPH);
 	}
-	
+
 	private void calcFEP() {
 		Map<String, Float> fep;
 		String name = name();
 		double weapon = 1;
-		if(name == null){return;}
-		if(name.equals("Ring of Brodgar")){
-			if(res.get().name.equals("gfx/invobjs/bread-brodgar")){name = "Ring of Brodgar (Baking)";}
-			if(res.get().name.equals("gfx/invobjs/feast-rob")){name = "Ring of Brodgar (Seafood)";}
+		if (name == null) {
+			return;
+		}
+		if (name.equals("Ring of Brodgar")) {
+			if (res.get().name.equals("gfx/invobjs/bread-brodgar")) {
+				name = "Ring of Brodgar (Baking)";
+			}
+			if (res.get().name.equals("gfx/invobjs/feast-rob")) {
+				name = "Ring of Brodgar (Seafood)";
+			}
 		}
 
 		name = name.toLowerCase();
 		boolean isItem = false;
-		if((fep = Config.FEPMap.get(name)) != null){
-			if(fep.containsKey("isItem")){
+		if ((fep = Config.FEPMap.get(name)) != null) {
+			if (fep.containsKey("isItem")) {
 				isItem = true;
 			}
 			FEP = "\n";
-			for(String key:fep.keySet()){
+			for (String key : fep.keySet()) {
 				double k = fep.get(key);
-				float val = (float)(k*qmult);
+				float val = (float) (k * qmult);
 				boolean hunger = false;
-				if(key.equals("HUNGER")){
+				if (key.equals("HUNGER")) {
 					val = fep.get(key);
 					hunger = true;
 				}
-				if(key.equals("isItem")){continue;}
-
-				if(name.contains("sword") || name.contains("axe")){
-					int str = ui.sess.glob.cattr.get("str").comp;
-					double marsh = 1 + (((double)ui.sess.glob.cattr.get("martial").comp * 4) / 100);
-					weapon = Math.sqrt(Math.sqrt((double)quality * (double)str)/10) * marsh;
-					val = (float)(weapon * k);
-				}else if(name.contains("bow") || name.contains("sling")){
-					double marsh = 1 + (((double)ui.sess.glob.cattr.get("martial").comp * 4) / 100);
-					val = (float)(marsh * val);
+				if (key.equals("isItem")) {
+					continue;
 				}
 
-				if(isItem || hunger){
+				if (name.contains("sword") || name.contains("axe")) {
+					int str = ui.sess.glob.cattr.get("str").comp;
+					double marsh = 1 + (((double) ui.sess.glob.cattr.get("martial").comp * 4) / 100);
+					weapon = Math.sqrt(Math.sqrt((double) quality * (double) str) / 10) * marsh;
+					val = (float) (weapon * k);
+				} else if (name.contains("bow") || name.contains("sling")) {
+					double marsh = 1 + (((double) ui.sess.glob.cattr.get("martial").comp * 4) / 100);
+					val = (float) (marsh * val);
+				}
+
+				if (isItem || hunger) {
 					val = (float) Math.floor(val);
 					FEP += String.format("%s:%.0f ", key, val);
 				} else {
@@ -378,21 +394,21 @@ public class Item extends Widget implements DTarget {
 	}
 
 	public String shorttip() {
-		if(this.tooltip != null)
-			return(this.tooltip);
+		if (this.tooltip != null)
+			return (this.tooltip);
 		Resource res = this.res.get();
-		if((res != null) && (res.layer(Resource.tooltip) != null)) {
+		if ((res != null) && (res.layer(Resource.tooltip) != null)) {
 			String tt = res.layer(Resource.tooltip).t;
-			if(tt != null) {
-				if(quality > 0) {
+			if (tt != null) {
+				if (quality > 0) {
 					tt = tt + ", quality " + quality;
-					if(hq)
+					if (hq)
 						tt = tt + "+";
 				}
-				return(tt);
+				return (tt);
 			}
 		}
-		return(null);
+		return (null);
 	}
 
 	long hoverstart;
@@ -400,56 +416,57 @@ public class Item extends Widget implements DTarget {
 
 	public Object tooltip(Coord c, boolean again) {
 		long now = System.currentTimeMillis();
-		if(!again)
+		if (!again)
 			hoverstart = now;
 		Resource res = this.res.get();
-		Resource.Pagina pg = (res!=null)?res.layer(Resource.pagina):null;
-		if(((now - hoverstart) < 500)||(pg == null)) {
-			if(shorttip == null) {
+		Resource.Pagina pg = (res != null) ? res.layer(Resource.pagina) : null;
+		if (((now - hoverstart) < 500) || (pg == null)) {
+			if (shorttip == null) {
 				String tt = shorttip();
-				if(tt != null) {
+				if (tt != null) {
 					tt = RichText.Parser.quote(tt);
-					if(meter > 0) {
+					if (meter > 0) {
 						tt = tt + " (" + meter + "%)";
 					}
-					if(FEP != null){
+					if (FEP != null) {
 						tt += FEP;
 					}
-					if(curioStr != null){
+					if (curioStr != null) {
 						tt += curioStr;
 					}
 					shorttip = RichText.render(tt, 200);
 				}
 			}
-			return(shorttip);
+			return (shorttip);
 		} else {
-			if((longtip == null) && (res != null)) {
+			if ((longtip == null) && (res != null)) {
 				String tip = shorttip();
-				if(tip == null)
-					return(null);
+				if (tip == null)
+					return (null);
 				String tt = RichText.Parser.quote(tip);
-				if(meter > 0) {
+				if (meter > 0) {
 					tt = tt + " (" + meter + "%)";
 				}
-				if(FEP != null){
+				if (FEP != null) {
 					tt += FEP;
 				}
-				if(curioStr != null){
+				if (curioStr != null) {
 					tt += curioStr;
 				}
-				if(pg != null)
+				if (pg != null)
 					tt += "\n\n" + pg.text;
 				longtip = RichText.render(tt, 200);
 			}
-			return(longtip);
+			return (longtip);
 		}
 	}
-	
+
 	public static String min2hours(int minutes) {
 		String ret = "";
-		int h = (int)(minutes / 60);
+		int h = (int) (minutes / 60);
 		int m = minutes - h * 60;
-		if (h > 0) ret += h + "h ";
+		if (h > 0)
+			ret += h + "h ";
 		ret += m + "min";
 		return ret;
 	}
@@ -465,11 +482,12 @@ public class Item extends Widget implements DTarget {
 				tt += FEP;
 			}
 			if (curio_stat != null && qmult > 0) {
-				if(UI.instance.wnd_char != null)
-					tt += "\nLP: $col[205,205,0]{" + Math.round(curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode()) + "}";
+				if (UI.instance.wnd_char != null)
+					tt += "\nLP: $col[205,205,0]{"
+							+ Math.round(curio_stat.baseLP * qmult * UI.instance.wnd_char.getExpMode()) + "}";
 				if (meter > 0) {
-					double time = (double)meter / 100;
-					tt += " in " + min2hours(curio_stat.studyTime - (int)(curio_stat.studyTime * time));
+					double time = (double) meter / 100;
+					tt += " in " + min2hours(curio_stat.studyTime - (int) (curio_stat.studyTime * time));
 				}
 				tt += " Att: " + curio_stat.attention;
 			}
@@ -652,13 +670,14 @@ public class Item extends Widget implements DTarget {
 
 	private void drawBar(GOut g, double capacity, Color clr, int width) {
 		try {
-			String valStr = tooltip.substring(tooltip.indexOf('(')+1, tooltip.indexOf('/'));
+			String valStr = tooltip.substring(tooltip.indexOf('(') + 1, tooltip.indexOf('/'));
 			double val = Double.parseDouble(valStr);
-			int h = (int)(val/capacity*sz.y);
+			int h = (int) (val / capacity * sz.y);
 			g.chcolor(clr);
-			int barH = h-shoff.y;
-			g.frect(new Coord(0, sz.y-h), new Coord(width, barH < 0 ? 0 : barH));
+			int barH = h - shoff.y;
+			g.frect(new Coord(0, sz.y - h), new Coord(width, barH < 0 ? 0 : barH));
 			g.chcolor();
-		} catch (Exception e) {} // fail silently.
+		} catch (Exception e) {
+		} // fail silently.
 	}
 }
