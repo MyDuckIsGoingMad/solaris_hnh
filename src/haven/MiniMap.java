@@ -77,8 +77,6 @@ public class MiniMap extends Widget {
 	double scales[] = { 0.5, 0.66, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2 };
 
 	/* New minimap functions */
-	public Set<Pair<Coord, Color>> profits = new HashSet<Pair<Coord, Color>>();
-	public Set<Pair<Coord, String>> hherbs = new HashSet<Pair<Coord, String>>();
 	public Set<Pair<Coord, Color>> players = new HashSet<Pair<Coord, Color>>();
 
 	public ArrayList<MinimapHighlight> highlights = new ArrayList<MinimapHighlight>();
@@ -408,11 +406,10 @@ public class MiniMap extends Widget {
 			}
 		}
 		if (!hidden) {
+			DuckUtils.drawMinimapHighlights(g, tc, hsz);
+
 			if (Config.show_minimap_radius) {
 				KerriUtils.drawVisSquare(g, tc, hsz);
-			}
-			if (Config.show_minimap_profits) {
-				DuckUtils.drawMinimapHighlights(g, tc, hsz);
 			}
 			if (Config.show_minimap_players) {
 				KerriUtils.drawPlayersAtMinimap(g, tc, hsz);

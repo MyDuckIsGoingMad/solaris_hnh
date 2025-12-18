@@ -46,12 +46,12 @@ import union.CustomMenu.MenuElemetUseListener;
 
 public class MenuGrid extends Window {
 	public final static Tex bg = Resource.loadtex("gfx/hud/invsq");
-	public final static Coord bgsz = bg.sz().add(-1, -1); //grid spacing
+	public final static Coord bgsz = bg.sz().add(-1, -1); // grid spacing
 	public final static Resource menu_next_tab = Resource.load("gfx/hud/sc-next");
 	public final static Resource menu_back_to_previous = Resource.load("gfx/hud/sc-back");
 	public final static RichText.Foundry ttfnd = new RichText.Foundry(
 			TextAttribute.FAMILY, "SansSerif", TextAttribute.SIZE, 10);
-	private static Coord gsz = new Coord(5, 5);//grid size (slots: columns, rows)
+	private static Coord gsz = new Coord(5, 5);// grid size (slots: columns, rows)
 	private Resource menu_current_parent_resource, pressed, dragging,
 			layout[][] = new Resource[200][200];
 	private int menu_current_layer_elements_offset = 0;
@@ -65,7 +65,6 @@ public class MenuGrid extends Window {
 	static final Coord gzsz = new Coord(16, 17);
 	boolean rsm = false;
 	static final Coord minsz = new Coord(bgsz.x * 4 + 30, bgsz.y * 1 + 28);
-	
 
 	static {
 		Widget.addtype("scm", new WidgetFactory() {
@@ -130,9 +129,8 @@ public class MenuGrid extends Window {
 		oldSize = this.sz;
 		recalcSize(this.sz);
 		fbtn.c.x = this.sz.x - 38;
-		setSize(new Coord(183, 152
-		));
-		if(Config.toggleCA)
+		setSize(new Coord(183, 152));
+		if (Config.toggleCA)
 			JSBotUtils.sendAction("crime");
 		/* Load Toolbars */
 		try {
@@ -222,7 +220,8 @@ public class MenuGrid extends Window {
 
 	public void draw(GOut g) {
 		super.draw(g);
-		if(folded) return;
+		if (folded)
+			return;
 		updlayout();
 		for (int y = 0; y < gsz.y; y++) {
 			for (int x = 0; x < gsz.x; x++) {
@@ -282,26 +281,26 @@ public class MenuGrid extends Window {
 		else
 			return (null);
 	}
-	
+
 	Resource right_click_pressed = null;
+
 	public boolean mousedown(Coord c, int button) {
-		if(folded) {
+		if (folded) {
 			recalcSize(this.sz);
-		    return super.mousedown(c, button);
+			return super.mousedown(c, button);
 		}
 		parent.setfocus(this);
 		raise();
 		Resource h = bhit(c);
-		if(button == 1){
-			if(h != null) {
+		if (button == 1) {
+			if (h != null) {
 				pressed = h;
 				ui.grabmouse(this);
 				return true;
-			}
-			else {
+			} else {
 				ui.grabmouse(this);
 				doff = c;
-				if(c.isect(sz.sub(gzsz), gzsz)){
+				if (c.isect(sz.sub(gzsz), gzsz)) {
 					oldSz = this.sz;
 					rsm = true;
 					return true;
@@ -316,33 +315,34 @@ public class MenuGrid extends Window {
 
 	Coord oldSz = new Coord(0, 0);
 	Coord d = new Coord(0, 0);
+
 	public void mousemove(Coord c) {
-		if (rsm){
+		if (rsm) {
 			this.sz = this.oldSz;
-			
+
 			d = d.add(c.sub(doff));
 			this.sz = this.sz.add(d);
-			
+
 			this.sz.x = Math.max(minsz.x, this.sz.x);
 			this.sz.y = Math.max(minsz.y, this.sz.y);
-			
+
 			// Snapping
-			this.sz.x = (int)(Math.round((double)this.sz.x / bgsz.x) * bgsz.x);
-			this.sz.y = (int)(Math.round((double)this.sz.y / bgsz.y) * bgsz.y);
-			
+			this.sz.x = (int) (Math.round((double) this.sz.x / bgsz.x) * bgsz.x);
+			this.sz.y = (int) (Math.round((double) this.sz.y / bgsz.y) * bgsz.y);
+
 			doff = c;
 			recalcSize(this.sz);
 			oldSize = this.sz;
 			fbtn.c.x = this.sz.x - 38;
-			gsz.x = (this.sz.x - 30)/(bgsz.x - 1);
-			gsz.y = (this.sz.y - 30)/(bgsz.y - 1);
+			gsz.x = (this.sz.x - 30) / (bgsz.x - 1);
+			gsz.y = (this.sz.y - 30) / (bgsz.y - 1);
 		} else {
 			if ((dragging == null) && (pressed != null)) {
 				Resource h = bhit(c);
 				if (h != pressed)
 					dragging = pressed;
 				return;
-			}else
+			} else
 				super.mousemove(c);
 		}
 	}
@@ -371,13 +371,15 @@ public class MenuGrid extends Window {
 			menu_current_parent_resource = menu_current_parent_resource.layer(Resource.action).parent;
 			menu_current_layer_elements_offset = 0;
 		} else if (r == menu_next_tab) {
-			if ((menu_current_layer_elements_offset + (gsz.x*gsz.y - 2) ) >= getSubResources(menu_current_parent_resource).length)
+			if ((menu_current_layer_elements_offset
+					+ (gsz.x * gsz.y - 2)) >= getSubResources(menu_current_parent_resource).length)
 				menu_current_layer_elements_offset = 0;
 			else
-				menu_current_layer_elements_offset += (gsz.x*gsz.y - 2);
+				menu_current_layer_elements_offset += (gsz.x * gsz.y - 2);
 		} else {
 			AButton abtn = r.layer(Resource.action);
-			if (abtn == null) return;
+			if (abtn == null)
+				return;
 			String[] actions = abtn.ad;
 			if (actions[0].equals("@")) {
 				usecustom(actions);
@@ -405,13 +407,13 @@ public class MenuGrid extends Window {
 						}
 					}
 				}
-				//Kerri: debugging actions
-				if(Config.mgridDebug) {
+				// Kerri: debugging actions
+				if (Config.mgridDebug) {
 					String[] ss = r.layer(Resource.action).ad;
 					String s = "";
-					for (int i=0; i<ss.length; i++)
-						s = s+ss[i]+", ";
-					System.out.println("Act click: "+s);
+					for (int i = 0; i < ss.length; i++)
+						s = s + ss[i] + ", ";
+					System.out.println("Act click: " + s);
 				}
 				//
 				wdgmsg("act", (Object[]) actions);
@@ -459,13 +461,6 @@ public class MenuGrid extends Window {
 			Config.saveOptions();
 		} else if (list[1].equals("timers")) {
 			TimerPanel.toggle();
-		} else if (list[1].equals("animal")) {
-			Config.showBeast = !Config.showBeast;
-			String str = "Animal highlight is turned "
-					+ ((Config.showBeast) ? "ON" : "OFF");
-			ui.cons.out.println(str);
-			ui.slenhud.error(str);
-			Config.saveOptions();
 		} else if (list[1].equals("study")) {
 			if (ui.wnd_study != null)
 				ui.wnd_study.toggle();
@@ -481,57 +476,59 @@ public class MenuGrid extends Window {
 		}
 		use(null);
 	}
-	
-	private void loadpos(){
+
+	private void loadpos() {
 		synchronized (Config.window_props) {
 			c = new Coord(Config.window_props.getProperty("menugrid_pos", c.toString()));
 			this.sz = new Coord(Config.window_props.getProperty("menugrid_sz", this.sz.toString()));
-			gsz.x = (this.sz.x - 30)/(bgsz.x - 1);
-			gsz.y = (this.sz.y - 30)/(bgsz.y - 1);
+			gsz.x = (this.sz.x - 30) / (bgsz.x - 1);
+			gsz.y = (this.sz.y - 30) / (bgsz.y - 1);
 		}
 	}
 
 	public boolean mouseup(Coord c, int button) {
-		if(dm){
-		    Config.setWindowOpt("menugrid_pos", this.c.toString());
+		if (dm) {
+			Config.setWindowOpt("menugrid_pos", this.c.toString());
 		}
-		if (rsm){
-		    ui.grabmouse(null);
-		    rsm = false;
-		    d = new Coord(0, 0);
-		    Config.setWindowOpt("menugrid_sz", this.sz.toString());
-		}else{
-		Resource h = bhit(c);
-		if (button == 1) {
-			if (dragging != null) {
-				ui.dropthing(ui.root, ui.mc, dragging);
-				dragging = pressed = null;
-			} else if (pressed != null) {
-				if (pressed == h)
-					use(h);
-				pressed = null;
-			}
+		if (rsm) {
 			ui.grabmouse(null);
-			//return true;
-		} else if (button == 3) {
-			if (h == null) return true;
-			if (right_click_pressed == h) {
-				if (right_click_pressed.layer(Resource.action) != null) {
-					String[] actions = right_click_pressed.layer(Resource.action).ad;
-					if (actions != null && actions.length > 0 && actions[0].equals(CustomMenu.menu_prefix)) {
-						if (actions.length > 1) {
-							String id = actions[1];
-							MenuElemetUseListener listener = listeners.get(id);
-							if (listener != null) {
-								listener.use(button);
+			rsm = false;
+			d = new Coord(0, 0);
+			Config.setWindowOpt("menugrid_sz", this.sz.toString());
+		} else {
+			Resource h = bhit(c);
+			if (button == 1) {
+				if (dragging != null) {
+					ui.dropthing(ui.root, ui.mc, dragging);
+					dragging = pressed = null;
+				} else if (pressed != null) {
+					if (pressed == h)
+						use(h);
+					pressed = null;
+				}
+				ui.grabmouse(null);
+				// return true;
+			} else if (button == 3) {
+				if (h == null)
+					return true;
+				if (right_click_pressed == h) {
+					if (right_click_pressed.layer(Resource.action) != null) {
+						String[] actions = right_click_pressed.layer(Resource.action).ad;
+						if (actions != null && actions.length > 0 && actions[0].equals(CustomMenu.menu_prefix)) {
+							if (actions.length > 1) {
+								String id = actions[1];
+								MenuElemetUseListener listener = listeners.get(id);
+								if (listener != null) {
+									listener.use(button);
+								}
 							}
 						}
 					}
 				}
+				return true;
 			}
-			return true;
+			updlayout();
 		}
-		updlayout();}
 		return super.mouseup(c, button);
 	}
 
@@ -563,6 +560,7 @@ public class MenuGrid extends Window {
 		}
 		return (false);
 	}
+
 	public void setSize(Coord newSize) {
 		this.sz = newSize; // Update the size
 		recalcSize(newSize); // Recalculate sizes/layouts if needed

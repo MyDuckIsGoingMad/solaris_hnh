@@ -1220,7 +1220,7 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		g.chcolor();
 	}
 
-	private void drawKritterRadius(GOut g) {
+	private void processHighlight(GOut g) {
 		String name;
 		ui.minimappanel.mm.highlights.clear();
 
@@ -1251,12 +1251,10 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 		g.chcolor();
 	}
 
-	private void drawcurioses(GOut g) {
+	private void drawPlayers(GOut g) {
 		try {
 			String name;
 			g.chcolor(255, 153, 51, 96);
-			ui.minimappanel.mm.profits.clear();
-			ui.minimappanel.mm.hherbs.clear();
 			ui.minimappanel.mm.players.clear();
 
 			synchronized (glob.oc) {
@@ -1294,8 +1292,6 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 								ui.minimappanel.mm.players.add(new Pair<Coord, Color>(tg.rc, Color.decode("0xFF0000")));
 							}
 						}
-						if (hit > 0 && Config.show_minimap_profits && tg.getres().name.contains("herbs"))
-							drawradius(g, tg.sc, 15);
 					}
 				}
 			}
@@ -1562,10 +1558,8 @@ public class MapView extends Widget implements DTarget, Console.Directory {
 			drawCropsStage(g);
 		}
 
-		if (Config.showBeast) {
-			drawKritterRadius(g);
-		}
-		drawcurioses(g);
+		processHighlight(g);
+		drawPlayers(g);
 		drawtracking(g);
 
 		if (curf != null)

@@ -30,28 +30,6 @@ public class KerriUtils {
 		}
 	}
 
-	// minimap panel button curio
-	public static void makeButtonSC() {
-		new IButton(new Coord(140, 8), UI.instance.minimappanel,
-				Resource.loadimg("gfx/hud/buttons/curiosityu"), Resource.loadimg("gfx/hud/buttons/curiosityd")) {
-			// Kerrigan
-			// я в душе не ибу правильно ли это, я в яву не могу
-			// оверрайд так через жопу подстанавливается автоматически, не ругайте меня, это
-			// хотябы вроде работает
-			@Override
-			public void setPushed(boolean pushed) {
-				super.setPushed(Config.show_minimap_profits);
-			}
-
-			public void click() {
-				Config.show_minimap_profits = !Config.show_minimap_profits;
-				setPushed(Config.show_minimap_profits);
-				UI.instance.slenhud.error("Show objects on minimap: " + Boolean.toString(Config.show_minimap_profits));
-				Config.saveOptions();
-			}
-		}.tooltip = "Show different shit on minimap";
-	}
-
 	// minimap panel button other players
 	public static void makeButtonOP() {
 		new IButton(new Coord(160, 8), UI.instance.minimappanel, Resource.loadimg("gfx/hud/buttons/humanu"),
@@ -123,43 +101,6 @@ public class KerriUtils {
 				g.chcolor(arg.snd);
 				g.fellipse(ptc, new Coord(circleRadiusInner, circleRadiusInner));
 				g.chcolor();
-			}
-		}
-	}
-
-	// draw profits at minimap
-	public static void drawProfitMinimap(GOut g, Coord tc, Coord hsz) {
-		if (UI.instance.minimap == null)
-			return;
-		synchronized (UI.instance.minimap.profits) {
-			for (Pair<Coord, Color> arg : UI.instance.minimap.profits) {
-				Coord ptc = arg.fst.div(tileSize).add(tc.inv())
-						.add(hsz.div(2));
-				g.chcolor(Color.BLACK);
-				g.fellipse(ptc, new Coord(5, 5));
-				g.chcolor(arg.snd);
-				g.fellipse(ptc, new Coord(4, 4));
-				g.chcolor();
-			}
-		}
-	}
-
-	// draw herbs at minimap
-	public static void drawHerbsMinimap(GOut g, Coord tc, Coord hsz) {
-		if (UI.instance.minimap == null)
-			return;
-		synchronized (UI.instance.minimap.hherbs) {
-			for (Pair<Coord, String> arg : UI.instance.minimap.hherbs) {
-				Coord ptc = arg.fst.div(tileSize).add(tc.inv())
-						.add(hsz.div(2));
-				g.chcolor(Color.GRAY);
-				g.fellipse(ptc, new Coord(10, 10));
-				g.chcolor();
-				// drawing icon
-				String resn = arg.snd;
-				Resource res = Resource.load(resn);
-				res.loadwait();
-				g.image(res.layer(Resource.imgc).tex(), ptc.sub(new Coord(10, 10)), new Coord(20, 20));
 			}
 		}
 	}

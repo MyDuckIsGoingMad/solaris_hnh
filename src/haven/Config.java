@@ -87,7 +87,6 @@ public class Config {
 	public static boolean showRadius = true;
 	public static boolean showHidden = true;
 	public static boolean showCropsStage = false;
-	public static boolean showBeast = true;
 	public static boolean showDirection;
 	public static boolean showNames;
 	public static boolean showOtherNames;
@@ -126,14 +125,12 @@ public class Config {
 
 	public static boolean assign_to_tile = false;
 
-	public static boolean show_minimap_profits = true;
 	public static boolean show_minimap_players = true;
 	public static boolean show_minimap_radius = true;
 	public static boolean show_gob_health = true;
 	public static boolean no_scent_smoke = true;
 	public static boolean render_enable = true;
 	public static boolean use_wasd = true;
-	public static ArrayList<Pair<String, Color>> minimap_highlights = new ArrayList<Pair<String, Color>>();
 	public static HashMap<String, HashMap<String, Float>> FEPMap = new HashMap<String, HashMap<String, Float>>();
 	public static HashMap<String, CuriosityStat> CurioMap = new HashMap<String, CuriosityStat>();
 	public static HashMap<String, Color> FEPColorMap = new HashMap<String, Color>();
@@ -425,7 +422,6 @@ public class Config {
 		showDirection = options.getProperty("show_direction", "true").equals("true");
 		showNames = options.getProperty("showNames", "true").equals("true");
 		showOtherNames = options.getProperty("showOtherNames", "false").equals("true");
-		showBeast = options.getProperty("showBeast", "false").equals("true");
 		showRadius = options.getProperty("showRadius", "false").equals("true");
 		showHidden = options.getProperty("showHidden", "false").equals("true");
 		showCropsStage = options.getProperty("showCropsStage", "false").equals("true");
@@ -453,8 +449,6 @@ public class Config {
 		hideVand = options.getProperty("hideVand", "false").equals("true");
 		hideMurd = options.getProperty("hideMurd", "false").equals("true");
 		//
-		show_minimap_profits = options.getProperty("show_minimap_profits",
-				"false").equals("true");
 		toggleCA = options.getProperty("toggleCA", "false").equals("true");
 		toggleTR = options.getProperty("toggleTR", "false").equals("true");
 		toggleCL = options.getProperty("toggleCL", "false").equals("true");
@@ -476,13 +470,6 @@ public class Config {
 		}
 		Resource.checkhide();
 		timestamp = options.getProperty("timestamp", "false").equals("true");
-
-		try {
-			INIFile ifile = new INIFile("config/haven.ini");
-			minimap_highlights = ifile.getSectionColors("HIGHLIGHT", "");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static synchronized void setWindowOpt(String key, String value) {
@@ -548,7 +535,6 @@ public class Config {
 		options.setProperty("show_direction", showDirection ? "true" : "false");
 		options.setProperty("showNames", showNames ? "true" : "false");
 		options.setProperty("showOtherNames", showOtherNames ? "true" : "false");
-		options.setProperty("showBeast", showBeast ? "true" : "false");
 		options.setProperty("showRadius", showRadius ? "true" : "false");
 		options.setProperty("showHidden", showHidden ? "true" : "false");
 		options.setProperty("showCropsStage", showCropsStage ? "true" : "false");
@@ -578,7 +564,6 @@ public class Config {
 		options.setProperty("hideBatt", hideBatt ? "true" : "false");
 		options.setProperty("hideVand", hideVand ? "true" : "false");
 		options.setProperty("hideMurd", hideMurd ? "true" : "false");
-		options.setProperty("show_minimap_profits", show_minimap_profits ? "true" : "false");
 		options.setProperty("show_gob_health", show_gob_health ? "true" : "false");
 		options.setProperty("show_minimap_players", show_minimap_players ? "true" : "false");
 		options.setProperty("show_minimap_radius", show_minimap_radius ? "true" : "false");
