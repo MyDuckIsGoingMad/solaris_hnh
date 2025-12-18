@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -215,7 +216,7 @@ public class Config {
 		try {
 			FileInputStream fstream = new FileInputStream("config/curios.conf");
 			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 			String curLine;
 			while ((curLine = br.readLine()) != null) {
 				String[] tmp = curLine.split(":");
@@ -239,7 +240,7 @@ public class Config {
 		try {
 			FileInputStream fstream = new FileInputStream("config/fep.conf");
 			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 			String strLine;
 			while ((strLine = br.readLine()) != null) {
 				HashMap<String, Float> fep = new HashMap<String, Float>();
@@ -345,7 +346,7 @@ public class Config {
 			FileInputStream fstream;
 			fstream = new FileInputStream("config/smileys.conf");
 			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 			String strLine;
 			while ((strLine = br.readLine()) != null) {
 				String[] tmp = strLine.split("\t");
